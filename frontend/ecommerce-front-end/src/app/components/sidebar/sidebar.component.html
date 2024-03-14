@@ -1,0 +1,39 @@
+<nav class="sidebar" [ngClass]="{'sidebar-open': isSidebarOpen, 'sidebar-closed': !isSidebarOpen}">
+    <ul class="side-nav">
+        <li class="side-nav__item side-nav__item--active">
+            <a href="#" class="side-nav__link">
+                <svg class="side-nav__icon">
+                    <use xlink:href="../../../assets/images/sprite.svg#icon-shopping-bag"></use>
+                </svg>
+                <span>products</span>
+            </a>
+        </li>
+        <li class="side-nav__item side-nav__item--active">
+            <a href="#" class="side-nav__link">
+                <svg class="side-nav__icon">
+                    <use xlink:href="../../../assets/images/sprite.svg#icon-border_color"></use>
+                </svg>
+                <span>orders</span>
+            </a>
+        </li>
+        <li class="side-nav__item side-nav__item--active">
+            <a href="#" class="side-nav__link">
+                <svg class="side-nav__icon">
+                    <use xlink:href="../../../assets/images/sprite.svg#icon-credit-card"></use>
+                </svg>
+                <span>payment</span>
+            </a>
+        </li>
+        <li class="side-nav__item side-nav__item--active">
+            <a href="#" class="side-nav__link">
+                <svg class="side-nav__icon">
+                    <use xlink:href="../../../assets/images/sprite.svg#icon-cog"></use>
+                </svg>
+                <span>settings</span>
+            </a>
+        </li>
+    </ul>
+    <div class="copyright">
+        &copy; 2024 by EC. All rights reserved.
+    </div>
+</nav>

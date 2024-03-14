@@ -1,0 +1,44 @@
+<div class="header-container">
+    <header class="header">
+        <div (click)="toggleSidebar()"  class="header__navi-toggle"><span [ngClass]="{'header__navi-icon--toggle':toggle}" class="header__navi-icon"></span></div>
+        <div class="header__logo-box">
+            <img src="../../../assets/images/logo-transparent.png" alt="Logo" class="header__logo">
+        </div>
+        <div class="header__search-box">
+            <app-search></app-search>
+        </div>
+        <nav class="user-nav">
+            <div class="user-nav__icon-box">
+                <svg class="user-nav__icon">
+                    <use xlink:href="../../../assets/images/sprite.svg#icon-chat"></use>
+                </svg>
+                <span class="user-nav__notification">7</span>
+            </div>
+            <div class="user-nav__icon-box">
+                <svg class="user-nav__icon">
+                    <use xlink:href="../../../assets/images/sprite.svg#icon-cart"></use>
+                </svg>
+                <span class="user-nav__notification">9</span>
+            </div>
+            <div class="user-nav__user" >
+                <svg class="user-nav__user-photo">
+                    <use xlink:href="../../../assets/images/sprite.svg#icon-user"></use>
+                </svg>
+                <span class="user-nav__user-name">Saif</span>
+                <svg class="user-nav__user-icon" (click)="openDropdown()">
+                    <use xlink:href="../../../assets/images/sprite.svg#icon-chevron-thin-right"></use>
+                </svg>
+            </div>
+        </nav>
+    </header>
+    <ul [ngClass]="{'user-nav__list-open':dropdown}" class="user-nav__list">
+        <li class="user-nav__item">
+            <a href="#" class="user-nav__logout-link">
+                <svg  class="user-nav__logout-icon">
+                    <use xlink:href="../../../assets/images/sprite.svg#icon-unlocked"></use>
+                </svg>
+                <span class="user-nav__logout-text">logout</span>
+            </a>
+        </li>
+    </ul>    
+</div>
