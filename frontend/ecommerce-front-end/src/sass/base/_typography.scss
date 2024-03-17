@@ -4,3 +4,22 @@ body{
     line-height: 1.7;
     color: var(--color-grey-dark-1);
 }
+
+.heading-primary{
+    font-size: 3.5rem;
+    font-weight: 700;
+    background-image: linear-gradient(to right,var(--color-primary-light),var(--color-primary-dark));
+    background-clip:text;
+    -webkit-background-clip: text;
+    display: inline-block;
+    text-transform: uppercase;
+    color: transparent;
+    letter-spacing: 2px;
+    transition: all .2s;
+
+    &:hover{
+        background-image: linear-gradient(to left,var(--color-primary-light),var(--color-primary-dark));
+        text-shadow: .5rem 1rem 2rem rgba(0,0,0,0.2);
+        transform: translateY(-5px);
+    }
+}

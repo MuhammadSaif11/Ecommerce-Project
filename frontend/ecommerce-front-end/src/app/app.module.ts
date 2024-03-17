@@ -4,21 +4,26 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
-import { SearchComponent } from './shared/components/search/search.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { ContentComponent } from './components/content/content.component';
+import { ContainerComponent } from './components/container/container.component';
+import { ForbiddenComponent } from './components/forbidden/forbidden.component';
+import { SharedModule } from './shared/shared.module';
+import { ContainerModule } from './components/container/container.module';
+import { AuthModule } from './components/container/components/auth/auth.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    SearchComponent,
     SidebarComponent,
-    ContentComponent,
+    ContainerComponent,
+    ForbiddenComponent,
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,9 @@
+<app-header></app-header>
+<div class="content">
+    <div class="sidebar-container" [ngClass]="{'sidebar-animation': isSidebarOpen, 'sidebar-after-animation': !isSidebarOpen}">
+        <app-sidebar></app-sidebar>
+    </div>
+    <main class="main">
+       <router-outlet></router-outlet>
+    </main>
+</div>
