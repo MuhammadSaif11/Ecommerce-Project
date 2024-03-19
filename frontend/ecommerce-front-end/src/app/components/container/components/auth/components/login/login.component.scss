@@ -1,7 +1,8 @@
 .form{
+    width: 50%;
     &__group{
         &:not(:last-child){
-            margin-bottom: 6rem;
+            margin-bottom: 3rem;
         }
     }
 }

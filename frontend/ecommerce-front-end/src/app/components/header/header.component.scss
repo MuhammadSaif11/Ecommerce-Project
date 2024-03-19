@@ -88,12 +88,20 @@
         flex: 0 0 40%;
 
     }
+    &__links-box{
+        display: none;
+    }
+
+    &__login,
+    &__signup{
+        margin-right: 2rem;
+    }
 }
 
 
 .user-nav{
     display: flex;
-    // background-color: orangered;
+    // display: none;
     align-self: stretch;
 
     & > *{

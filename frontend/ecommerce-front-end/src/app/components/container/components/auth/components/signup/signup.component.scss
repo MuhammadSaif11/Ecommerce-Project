@@ -1,7 +1,17 @@
 .form{
+    width: 50%;
     &__group{
         &:not(:last-child){
             margin-bottom: 3rem;
+        }
+    }
+
+    &__group-name{
+        display: flex;
+        justify-content: space-between;
+
+        & > * {
+            flex: 0 0 46%;
         }
     }
 }

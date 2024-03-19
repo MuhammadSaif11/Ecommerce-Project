@@ -2,7 +2,7 @@
     <header class="header">
         <div (click)="toggleSidebar()"  class="header__navi-toggle"><span [ngClass]="{'header__navi-icon--toggle':toggle}" class="header__navi-icon"></span></div>
         <div class="header__logo-box">
-            <img src="../../../assets/images/logo-transparent.png" alt="Logo" class="header__logo">
+            <img src="../../../assets/images/xeniore-high-resolution-logo.png" alt="Logo" class="header__logo">
         </div>
         <div class="header__search-box">
             <app-search></app-search>
@@ -20,7 +20,7 @@
                 </svg>
                 <span class="user-nav__notification">9</span>
             </div>
-            <div class="user-nav__user" >
+            <div class="user-nav__user">
                 <svg class="user-nav__user-photo">
                     <use xlink:href="../../../assets/images/sprite.svg#icon-user"></use>
                 </svg>
@@ -30,6 +30,14 @@
                 </svg>
             </div>
         </nav>
+        <div class="header__links-box">
+            <div class="header__login">
+                <app-button>Login</app-button>
+            </div>
+            <div class="header__signup">
+                <app-button>Signup</app-button>
+            </div>
+        </div>
     </header>
     <ul [ngClass]="{'user-nav__list-open':dropdown}" class="user-nav__list">
         <li class="user-nav__item">
