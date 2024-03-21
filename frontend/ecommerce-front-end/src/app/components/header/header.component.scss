@@ -89,7 +89,7 @@
 
     }
     &__links-box{
-        display: none;
+        display: flex;
     }
 
     &__login,
@@ -101,7 +101,6 @@
 
 .user-nav{
     display: flex;
-    // display: none;
     align-self: stretch;
 
     & > *{

@@ -30,4 +30,6 @@ public class UserDto {
     @NotBlank(message = "email can not be blank")
     @Email(message = "provide a valid email")
     private String email;
+    @NotBlank(message = "gender can not be blank")
+    private String gender;
 }

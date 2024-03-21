@@ -14,9 +14,21 @@
         position: relative;
         transition: all .4s;
     }
- 
+    
+    &:hover{
+        box-shadow: 0 1rem 2rem rgba(0, 0, 0,.2);
+        background-image: linear-gradient(to left, var(--color-primary-light), var(--color-primary-dark));
+    }
 
-    &::before{
+    &:active{
+        outline: none;
+        transform: translateY(3px);
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0,.2);
+    }
+
+
+
+    &--animated::before{
         content: "";
         border:none;
         border-radius: 5px;
@@ -34,7 +46,8 @@
     &--orangered::before{
         background-image: linear-gradient(to right,orange,orangered);
     }
-    &:hover{
+    &--animated:hover{
+        background-image: linear-gradient(to right, var(--color-primary-light), var(--color-primary-dark));
         transform: translateY(-5px);
         box-shadow: 0 1rem 2rem rgba(0, 0, 0,.2);
 
@@ -45,10 +58,52 @@
 
     }
 
-    &:active{
+    &--animated:active{
+        outline: none;
         transform: translateY(0);
         box-shadow: 0 .5rem 1rem rgba(0, 0, 0,.2);
 
     }    
+}
+
+.btn-text{
+    &,
+    &:link,
+    &:visited{
+        border:none;
+        background-color: transparent;
+        color: var(--color-primary);
+        border-bottom: 2px solid currentColor;
+        text-transform: uppercase;
+        padding-bottom: .5rem;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 1.2rem;
+        transition: all .2s;    
+    }
+
+    &:hover{
+        transform: translateY(-2px);
+    }
+
+    &:active{
+        transform: translateY(0);
+        color: var(--color-primary-dark);
+    }
+
+}
+
+.btn-disable{
+    border:none;
+    text-transform: uppercase;
+    border-radius: 5px;
+    padding: 1.5rem 3rem;
+    cursor: pointer;
+    display: inline-block;
+    background-image: linear-gradient(to right, var(--color-primary-light), var(--color-primary-dark));
+    color: #fff;
+    font-size: 1.6rem;
+    opacity: 0.2;
+
 }
 

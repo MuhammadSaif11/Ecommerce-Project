@@ -1,5 +1,7 @@
-import {  AfterViewInit, Component, ElementRef, HostListener, Renderer2, ViewChild, inject  } from '@angular/core';
+import {  AfterViewInit, Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild, inject  } from '@angular/core';
+import { Router } from '@angular/router';
 import { NavToggleService } from 'src/app/shared/services/nav-toggle.service';
+import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 
 
 @Component({
@@ -7,11 +9,13 @@ import { NavToggleService } from 'src/app/shared/services/nav-toggle.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements AfterViewInit {
+export class HeaderComponent implements OnInit {
 
   constructor(private renderer:Renderer2){}
 
   private navToggle:NavToggleService = inject(NavToggleService);
+  private userAuthService:UserAuthService = inject(UserAuthService);
+  public userFullname:string;
 
   @ViewChild("list") list: ElementRef;
 
@@ -22,12 +26,23 @@ export class HeaderComponent implements AfterViewInit {
   dropdown:boolean=false;
   toggle:boolean=false;
 
-  ngAfterViewInit(): void {
-    
+  ngOnInit(): void {
+    this.userAuthService.userFullname.subscribe((userFullname) => {
+      this.userFullname = userFullname;
+    })
+  }
+
+  logout(){
+    this.userAuthService.clear();
+    this.dropdown = false;
   }
 
   openDropdown(){
     this.dropdown = !this.dropdown;
+  }
+
+  loggedIn(){
+    return this.userAuthService.isLoggedIn()
   }
 
   toggleSidebar() {

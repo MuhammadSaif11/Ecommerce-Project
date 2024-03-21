@@ -14,7 +14,4 @@ export class NavToggleService {
     this.isSidebarOpenSubject.next(!this.isSidebarOpenSubject.value);
   }
 
-  isSidebarOpen(): boolean {
-    return this.isSidebarOpenSubject.value;
-  }
 }

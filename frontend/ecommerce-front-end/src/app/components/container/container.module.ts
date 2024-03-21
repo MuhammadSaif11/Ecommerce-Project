@@ -5,7 +5,7 @@ import { ContainerRoutingModule } from './container-routing.module';
 import { ProductComponent } from './components/product/product.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { RouterModule } from '@angular/router';
-import { SharedModule } from 'src/app/shared/shared.module';
+
 
 
 @NgModule({
@@ -17,7 +17,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CommonModule,
     RouterModule,
     ContainerRoutingModule,
-    SharedModule
   ],
 })
 export class ContainerModule { }

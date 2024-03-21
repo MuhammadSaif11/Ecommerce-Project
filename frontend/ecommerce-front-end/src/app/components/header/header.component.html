@@ -7,7 +7,7 @@
         <div class="header__search-box">
             <app-search></app-search>
         </div>
-        <nav class="user-nav">
+        <nav *ngIf="loggedIn()" class="user-nav">
             <div class="user-nav__icon-box">
                 <svg class="user-nav__icon">
                     <use xlink:href="../../../assets/images/sprite.svg#icon-chat"></use>
@@ -24,29 +24,29 @@
                 <svg class="user-nav__user-photo">
                     <use xlink:href="../../../assets/images/sprite.svg#icon-user"></use>
                 </svg>
-                <span class="user-nav__user-name">Saif</span>
+                <span class="user-nav__user-name">{{userFullname}}</span>
                 <svg class="user-nav__user-icon" (click)="openDropdown()">
                     <use xlink:href="../../../assets/images/sprite.svg#icon-chevron-thin-right"></use>
                 </svg>
             </div>
+            <ul [ngClass]="{'user-nav__list-open':dropdown}" class="user-nav__list">
+                <li class="user-nav__item">
+                    <a routerLink="/auth/login" (click)="logout()" class="user-nav__logout-link">
+                        <svg  class="user-nav__logout-icon">
+                            <use xlink:href="../../../assets/images/sprite.svg#icon-unlocked"></use>
+                        </svg>
+                        <span class="user-nav__logout-text">logout</span>
+                    </a>
+                </li>
+            </ul>    
         </nav>
-        <div class="header__links-box">
+        <div *ngIf="!loggedIn()" class="header__links-box">
             <div class="header__login">
-                <app-button>Login</app-button>
+                <app-button [btnClasses]="['btn']" [navigateTo]="'/auth/login'">Login</app-button>
             </div>
             <div class="header__signup">
-                <app-button>Signup</app-button>
+                <app-button [btnClasses]="['btn']" [navigateTo]="'/auth/signup'">Signup</app-button>
             </div>
         </div>
     </header>
-    <ul [ngClass]="{'user-nav__list-open':dropdown}" class="user-nav__list">
-        <li class="user-nav__item">
-            <a href="#" class="user-nav__logout-link">
-                <svg  class="user-nav__logout-icon">
-                    <use xlink:href="../../../assets/images/sprite.svg#icon-unlocked"></use>
-                </svg>
-                <span class="user-nav__logout-text">logout</span>
-            </a>
-        </li>
-    </ul>    
 </div>

@@ -10,6 +10,8 @@ import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { SharedModule } from './shared/shared.module';
 import { ContainerModule } from './components/container/container.module';
 import { AuthModule } from './components/container/components/auth/auth.module';
+import { AdminComponent } from './components/admin/admin.component';
+import { UserComponent } from './components/user/user.component';
 
 @NgModule({
   declarations: [
@@ -18,11 +20,15 @@ import { AuthModule } from './components/container/components/auth/auth.module';
     SidebarComponent,
     ContainerComponent,
     ForbiddenComponent,
+    AdminComponent,
+    UserComponent,
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ContainerModule,
+    AuthModule,
     SharedModule,
   ],
   providers: [],
