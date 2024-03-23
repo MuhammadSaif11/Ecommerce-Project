@@ -11,7 +11,8 @@ import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     ProductComponent,
-    AuthComponent
+    AuthComponent,
+
   ],
   imports: [
     CommonModule,

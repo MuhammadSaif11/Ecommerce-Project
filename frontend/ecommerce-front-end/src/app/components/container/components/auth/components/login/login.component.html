@@ -17,7 +17,7 @@
         </div>
         <div class="form__group">
             <app-button [disableValue]="LoginForm.invalid" [btnClasses]="['btn','btn--animated']" [btnType]="'submit'">Login</app-button>
-            <app-button class="margin-left-large" [btnClasses]="['btn-text']" [btnType]="'submit'">forgot password</app-button>
+            <app-button [navigateTo]="'/auth/forgot-password'" class="margin-left-large" [btnClasses]="['btn-text']" [btnType]="'submit'">forgot password</app-button>
         </div>
     </form>
 </app-form>

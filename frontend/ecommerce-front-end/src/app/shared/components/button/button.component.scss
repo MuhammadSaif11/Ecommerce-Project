@@ -93,7 +93,7 @@
 
 }
 
-.btn-disable{
+.btn--animated[disabled]{
     border:none;
     text-transform: uppercase;
     border-radius: 5px;
@@ -104,6 +104,22 @@
     color: #fff;
     font-size: 1.6rem;
     opacity: 0.2;
+    &:hover{
+        background-image: linear-gradient(to right, var(--color-primary-light), var(--color-primary-dark));
+        transform: translateY(0px);
+        box-shadow: none;
 
+        &::before{
+            transform: scaleX(1) scaleY(1);
+            opacity: 0;
+        }
+
+    }
+
+
+    &:active{
+        outline: none;
+        transform: translateY(0);
+        box-shadow: none;
+    }
 }
-

@@ -1,0 +1,15 @@
+<div class="forgot-password">
+    <app-form>
+        <form [formGroup]="VerifyOtpForm" (ngSubmit)="verifyOtp()" class="form">
+            <div class="margin-bottom-small">
+                <app-input>
+                    <input type="text" class="input-text" placeholder="Enter OTP" id="otp" formControlName="otp">
+                </app-input>
+                <!-- <small class="error" *ngIf="VerifyOtpForm.get('email').errors?.['required'] && VerifyOtpForm.get('email').touched">Email cannot be blank</small> -->
+                <!-- <small class="error" *ngIf="VerifyOtpForm.get('email').errors?.['email'] && VerifyOtpForm.get('email').touched">Provide a valid email</small> -->
+            </div>
+            <app-button [disableValue]="VerifyOtpForm.invalid" [btnClasses]="['btn','btn--animated']" [btnType]="'submit'">Verify</app-button>
+        </form>    
+        <!-- <small class="message margin-top-small">We will send u an otp to verify its your email</small> -->
+     </app-form>
+</div> 
