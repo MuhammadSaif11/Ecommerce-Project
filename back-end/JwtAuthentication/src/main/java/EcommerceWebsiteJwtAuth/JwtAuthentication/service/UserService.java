@@ -1,9 +1,9 @@
 package EcommerceWebsiteJwtAuth.JwtAuthentication.service;
 
-import EcommerceWebsiteJwtAuth.JwtAuthentication.dto.JwtRequest;
+import EcommerceWebsiteJwtAuth.JwtAuthentication.dto.OtpDto;
 import EcommerceWebsiteJwtAuth.JwtAuthentication.dto.UserDto;
 import EcommerceWebsiteJwtAuth.JwtAuthentication.entity.User;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import jakarta.mail.MessagingException;
 
 import java.util.List;
 
@@ -15,4 +15,7 @@ public interface UserService{
 
     User findUserByName(String username);
 
+    void forgotPassword(String emailOrUsername) throws MessagingException;
+
+    Boolean verifyOtp(OtpDto otp);
 }

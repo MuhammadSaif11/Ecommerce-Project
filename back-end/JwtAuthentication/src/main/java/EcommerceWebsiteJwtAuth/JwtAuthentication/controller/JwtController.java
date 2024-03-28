@@ -4,20 +4,27 @@ import EcommerceWebsiteJwtAuth.JwtAuthentication.dto.JwtRequest;
 import EcommerceWebsiteJwtAuth.JwtAuthentication.dto.JwtResponse;
 import EcommerceWebsiteJwtAuth.JwtAuthentication.entity.User;
 import EcommerceWebsiteJwtAuth.JwtAuthentication.helper.JwtService;
+import EcommerceWebsiteJwtAuth.JwtAuthentication.service.UserInfoDetails;
 import EcommerceWebsiteJwtAuth.JwtAuthentication.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
+
 @RestController
 @CrossOrigin
 public class JwtController {
+
     private AuthenticationManager authenticationManager;
     private JwtService jwtService;
 
@@ -31,6 +38,7 @@ public class JwtController {
     @PostMapping("/login")
     public JwtResponse authenticateAndGetToken(@RequestBody JwtRequest jwtRequest){
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(jwtRequest.getUsername(), jwtRequest.getPassword()));
+        Authentication authentication1 = SecurityContextHolder.getContext().getAuthentication();
         if(authentication.isAuthenticated()){
             User user = userService.findUserByName(jwtRequest.getUsername());
             return JwtResponse.builder()

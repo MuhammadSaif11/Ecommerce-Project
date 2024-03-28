@@ -1,0 +1,25 @@
+:host ::ng-deep .alert{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    
+
+    &__success{
+        color: #55c57a;
+        background-color: rgba($color: #7ed56f, $alpha: .2);       
+    }
+
+    &__danger{
+        color: #f73c3c;
+        background-color: rgba($color: #f25656, $alpha: .2);       
+    }
+
+    &__warning{
+        color: #55c57a;
+        background-color: rgba($color: #7ed56f, $alpha: .2);       
+    }
+
+}

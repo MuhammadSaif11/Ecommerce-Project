@@ -35,6 +35,14 @@ export class UserAuthService {
      return localStorage.getItem('userFullname'); 
   }
 
+  public setEmail(email: string) {
+    return localStorage.setItem('email', email);
+  }
+
+  public getEmail() {
+     return localStorage.getItem('email'); 
+  }
+
   public clear() {
     localStorage.clear();
   }

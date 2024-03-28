@@ -49,6 +49,12 @@ public class CustomExceptionHandler {
             customError.setTimestamp(System.currentTimeMillis());
             return new ResponseEntity<>(customError,HttpStatus.BAD_REQUEST);
         }
+        if (e instanceof UserNotFoundException){
+            customError.setMessage(e.getMessage());
+            customError.setStatus(HttpStatus.NOT_FOUND.value());
+            customError.setTimestamp(System.currentTimeMillis());
+            return new ResponseEntity<>(customError,HttpStatus.BAD_REQUEST);
+        }
         return null;
     }
 

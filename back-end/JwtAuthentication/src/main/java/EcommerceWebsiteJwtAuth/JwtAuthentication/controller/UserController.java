@@ -1,9 +1,12 @@
 package EcommerceWebsiteJwtAuth.JwtAuthentication.controller;
 
+import EcommerceWebsiteJwtAuth.JwtAuthentication.dto.ForgotPasswordRequest;
 import EcommerceWebsiteJwtAuth.JwtAuthentication.dto.JwtRequest;
+import EcommerceWebsiteJwtAuth.JwtAuthentication.dto.OtpDto;
 import EcommerceWebsiteJwtAuth.JwtAuthentication.dto.UserDto;
 import EcommerceWebsiteJwtAuth.JwtAuthentication.entity.User;
 import EcommerceWebsiteJwtAuth.JwtAuthentication.service.UserService;
+import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,6 +45,16 @@ public class UserController {
     @GetMapping("/user")
     public String forUser(){
         return "this is for user";
+    }
+
+    @PostMapping("/forgot-password")
+    public void forgotPassword(@RequestBody String emailOrUsername) throws MessagingException {
+        userService.forgotPassword(emailOrUsername);
+    }
+
+    @PostMapping("/verify-otp")
+    public Boolean VerifyOtp(@RequestBody OtpDto otp){
+        return userService.verifyOtp(otp);
     }
 
 }

@@ -8,6 +8,7 @@ import { SearchComponent } from './components/search/search.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { AlertBoxComponent } from './components/alert-box/alert-box.component';
 
 
 
@@ -17,7 +18,8 @@ import { RouterModule } from '@angular/router';
     FormComponent,
     InputComponent,
     RadioButtonComponent,
-    SearchComponent
+    SearchComponent,
+    AlertBoxComponent
   ],
   imports: [
     CommonModule,
@@ -31,6 +33,7 @@ import { RouterModule } from '@angular/router';
     InputComponent,
     RadioButtonComponent,
     SearchComponent,
+    AlertBoxComponent,
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule

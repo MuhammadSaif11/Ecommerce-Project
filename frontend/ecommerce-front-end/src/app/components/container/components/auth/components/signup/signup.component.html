@@ -49,7 +49,7 @@
             </div>
         </div>
         <div class="form__group">
-            <app-button [btnClasses]="['btn','btn--animated']" [btnType]="'submit'">Signup</app-button>
+            <app-button [disableValue]="signupForm.invalid" [btnClasses]="['btn','btn--animated']" [btnType]="'submit'">Signup</app-button>
         </div>
     </form>
 </app-form>

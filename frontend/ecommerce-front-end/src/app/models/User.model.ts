@@ -1,4 +1,3 @@
-import { Role } from "./Role.model";
 
 export class User{
     public get gender(): string {

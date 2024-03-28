@@ -1,5 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CustomError } from 'src/app/models/CustomError.model';
 import { User } from 'src/app/models/User.model';
 import { UserService } from 'src/app/shared/services/user.service';
@@ -12,12 +13,14 @@ import { UserService } from 'src/app/shared/services/user.service';
 export class SignupComponent implements OnInit {
   formBuilder: FormBuilder = inject(FormBuilder);
   signupForm:FormGroup;
+  router:Router = inject(Router);
   userService:UserService = inject(UserService);
   error:CustomError;
   signup(){
     this.userService.signUp(this.signupForm.value).subscribe({
       next:(response:User)=>{
         console.log(response)
+        this.router.navigate(['/login']);
       },
       error:(error)=>{
         this.error = error.error;
