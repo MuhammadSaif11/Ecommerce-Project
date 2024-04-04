@@ -1,0 +1,68 @@
+<div class="header-container">
+    <header class="header">
+        <div (click)="toggleSidebar()"  class="header__navi-toggle"><span [ngClass]="{'header__navi-icon--toggle':toggle}" class="header__navi-icon"></span></div>
+        <div class="header__logo-box">
+            <img src="../../../assets/images/xeniore-high-resolution-logo.png" alt="Logo" class="header__logo">
+        </div>
+        <div class="header__search-box">
+            <app-search></app-search>
+        </div>
+        <nav *ngIf="loggedIn()" class="user-nav">
+            <div class="user-nav__icon-box">
+                <svg class="user-nav__icon">
+                    <use xlink:href="../../../assets/images/sprite.svg#icon-chat"></use>
+                </svg>
+                <span class="user-nav__notification">7</span>
+            </div>
+            <div class="user-nav__icon-box">
+                <svg class="user-nav__icon">
+                    <use xlink:href="../../../assets/images/sprite.svg#icon-cart"></use>
+                </svg>
+                <span class="user-nav__notification">9</span>
+            </div>
+            <div class="user-nav__user" (click)="openDropdown()">
+                <svg class="user-nav__user-photo">
+                    <use xlink:href="../../../assets/images/sprite.svg#icon-user"></use>
+                </svg>
+                <span class="user-nav__user-name">{{userFullname}}</span>
+                <svg class="user-nav__user-icon">
+                    <use xlink:href="../../../assets/images/sprite.svg#icon-chevron-thin-right"></use>
+                </svg>
+                <ul [ngClass]="{'user-nav__list-open':dropdown}" class="user-nav__list">
+                    <li class="user-nav__item">
+                        <a routerLink="/auth/login" (click)="logout()" class="user-nav__logout-link">
+                            <svg  class="user-nav__logout-icon">
+                                <use xlink:href="../../../assets/images/sprite.svg#icon-unlocked"></use>
+                            </svg>
+                            <span class="user-nav__logout-text">logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>    
+        </nav>
+        <div *ngIf="!loggedIn()" class="header__links-box">
+            <div class="header__login">
+                <app-button [btnClasses]="['btn']" [navigateTo]="'/auth/login'">Login</app-button>
+            </div>
+            <div class="header__signup">
+                <app-button [btnClasses]="['btn']" [navigateTo]="'/auth/signup'">Signup</app-button>
+            </div>
+        </div>
+    </header>
+</div>
+<ng-container *ngIf="isAdmin() && loggedIn()">
+    <nav class="admin-nav">
+        <ul class="navigation">
+            <li class="navigation__item">
+                <a routerLink="/add" class="navigation__link">
+                    Add new product
+                </a>
+            </li>
+            <li class="navigation__item">
+                <a routerLink="/add" class="navigation__link">
+                    Delete product
+                </a>
+            </li>
+        </ul>
+    </nav>
+</ng-container>

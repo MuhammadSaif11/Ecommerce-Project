@@ -1,0 +1,22 @@
+<div class="forgot-password">
+    <app-form>
+        <div class="margin-bottom-medium">
+            <h2 class="heading-primary">Verify otp</h2>
+        </div>
+        <form [formGroup]="VerifyOtpForm" (ngSubmit)="verifyOtp()" class="form margin-bottom-small">
+            <div class="margin-bottom-small">
+                <app-input>
+                    <input type="text" class="input-text" placeholder="Enter OTP" id="otp" formControlName="otp">
+                </app-input>
+                <small class="error" *ngIf="VerifyOtpForm.get('otp').errors?.['required'] && VerifyOtpForm.get('otp').touched">Otp cannot be blank</small>
+                <small class="error" *ngIf="!otpVerification && VerifyOtpForm.valid">otp does not match or expired</small>
+            </div>
+            <app-button [disableValue]="VerifyOtpForm.invalid" [btnClasses]="['btn','btn--animated']" [btnType]="'submit'">Verify</app-button>
+        </form>    
+        <app-alert-box>
+            <div class="alert alert__success">
+                we have successfully sent you an otp
+            </div>
+        </app-alert-box>
+     </app-form>
+</div> 

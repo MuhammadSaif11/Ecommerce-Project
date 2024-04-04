@@ -1,0 +1,233 @@
+.header-container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 7rem;
+    font-size: 1.4rem;
+    background-color: #fff;
+    box-shadow: 0 1.5rem 3rem rgba(0,0,0,.1);
+
+    &__navi-toggle{
+        height: 6rem;
+        width: 6rem;
+        border-radius: 50%;
+        box-shadow: 0 2rem 4rem rgba(0,0,0,.1);
+        position: fixed;
+        top: 1%;
+        left: 1%;
+        cursor: pointer;
+        backface-visibility: hidden;
+
+        &:hover .header__navi-icon::before{
+            top: -1.2rem;
+        }
+
+        &:hover .header__navi-icon::after{
+            top: 1.2rem;
+        }        
+    }
+    &__navi-icon{
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        &,
+        &::after,
+        &::before{
+            position: absolute;
+            width: 3rem;
+            height: 2px;
+            background-color: var(--color-grey-dark-1);
+            display: inline-block;
+            transition: all .3s;
+        }
+
+        &::after,
+        &::before{
+            content: "";
+        }
+        &::after{
+            top: 1rem;
+        }
+
+        &::before{
+            top:-1rem;
+        }
+
+        &--toggle{
+            background-color: transparent;
+            &::before,
+            &::after{
+                opacity: 1;
+                transform-origin: left;
+            }
+            &::after{
+                transform: rotate(-45deg);
+            }
+    
+            &::before{
+                transform: rotate(45deg);
+            }
+        }
+    }
+    &__logo-box{
+        margin-left: 10rem;
+        margin-top: .5rem;
+    }
+
+    &__logo{
+        height: 5.5rem;
+    }
+    &__search-box{
+        flex: 0 0 40%;
+
+    }
+    &__links-box{
+        display: flex;
+    }
+
+    &__login,
+    &__signup{
+        margin-right: 2rem;
+    }
+}
+
+
+.user-nav{
+    display: flex;
+    align-self: stretch;
+    & > *{
+        padding: 0 2rem;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        &:hover{
+            background-color: var(--color-grey-light-2);
+        }
+    }
+
+    &__icon-box{
+        position: relative;
+    }
+
+    &__notification{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        width: 1.5rem;
+        height: 1.5rem;
+        background-color: var(--color-primary);
+        color: #fff;
+        position: absolute;
+        top: 21%;
+        left: 60%;
+        font-size: .7rem;
+    }
+
+    &__icon{
+        height: 2.5rem;
+        width: 2.5rem;
+        fill: var(--color-grey-dark-2);
+    }
+
+    &__user{
+        position: relative;
+    }
+
+    &__user-icon{
+        width: 1.5rem;
+        height: 1.5rem;
+        transform: rotateZ(90deg);
+        margin-left: 1rem;
+        margin-top: 1rem;
+    }
+
+    &__user-photo{
+        width: 5rem;
+        height: 5rem;
+        fill: var(--color-grey-dark-2);
+    }
+
+    &__user-name{
+        text-transform: uppercase;
+        margin-top: 1rem;
+    }
+    &__list{
+        width: 100%;
+        list-style: none;
+        position: absolute;
+        padding: 0 !important;
+        top: -7rem;
+        right: 0;
+        transition: all .5s cubic-bezier(0.68,-0.55,0.265,1.85);
+        z-index: -1;
+    }
+    &__list-open{
+        top:7rem;
+    }
+    &__logout-link:link,
+    &__logout-link:visited{
+        text-decoration: none;
+        text-transform: uppercase;
+        color: #fff;
+        display: flex;
+        background-color: var(--color-grey-dark-1);
+        align-items: center;
+        justify-content: center;
+        padding: 1.25rem 5rem;
+        &:hover{
+            background-image: linear-gradient(to right,var(--color-primary-light),var(--color-primary-dark));
+        }
+        &:active{
+            background-image: linear-gradient(to right,var(--color-primary-dark),var(--color-primary-light))
+        }
+    }
+    &__logout-icon{
+        width: 1.75rem;
+        height: 1.75rem;
+        fill: #fff;
+        margin-right: .8rem;
+
+    }
+    &__logout-text{
+        margin-top: .5rem;
+    }
+}
+.admin-nav{
+    background-color: var(--color-primary);
+    margin-top: 7rem;
+    margin-bottom: -7rem;
+}
+
+.navigation{
+    display: flex;
+    font-size: 1.4rem;
+    list-style: none;
+     &__link{
+        &:link,
+        &:visited{
+            text-decoration: none;
+            text-transform: uppercase;
+            display: flex;
+            padding: 1.5rem;
+            align-items: center;
+            color: #fff;
+            transition: all .2s;
+        }
+        &:hover{
+            background-color: var(--color-primary-light);
+        }
+        &:active{
+            background-color: rgba(var(--color-primary-light),.8);
+            
+        }
+     }
+}

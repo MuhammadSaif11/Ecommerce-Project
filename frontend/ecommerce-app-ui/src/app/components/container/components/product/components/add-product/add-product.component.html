@@ -1,0 +1,32 @@
+<app-form>
+    <div class="margin-bottom-medium">
+        <h2 class="heading-primary">Add Product here</h2>
+    </div>
+    <form [formGroup]="productForm" (ngSubmit)="addProduct()" class="form">
+        <div class="form__group">
+            <app-input>
+                <input formControlName="productName" type="text" class="input-text" placeholder="product name" id="productName">
+            </app-input>
+        </div>
+        <div class="form__group">
+            <app-input>
+                <textarea formControlName="productDescription" type="text" class="input-text" placeholder="product description" id="productDescription" cols="30" rows="4"></textarea>
+            </app-input>
+        </div>
+        <div class="form__group-parent">
+            <div class="form__group">
+                <app-input>
+                    <input formControlName="productActualPrice" type="number" class="input-text" placeholder="product actual price" id="productActualPrice">
+                </app-input>
+            </div>
+            <div class="form__group">
+                <app-input>
+                    <input formControlName="productDiscountedPrice" type="number" class="input-text" placeholder="product discounted price" id="productDiscountedPrice" >
+                </app-input>
+            </div>
+        </div>
+        <div class="form__group">
+            <app-button [disableValue]="productForm.invalid" [btnClasses]="['btn','btn--animated']" [btnType]="'submit'">Add product</app-button>
+        </div>
+    </form>
+</app-form>
