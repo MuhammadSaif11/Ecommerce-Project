@@ -1,4 +1,4 @@
-import { FormGroup } from "@angular/forms";
+import { FormControl, FormGroup } from "@angular/forms";
 export class CustomValidators{
     static passwordMatcher(formGroup: FormGroup){
         const newPassword = formGroup.get('new-password');
@@ -11,5 +11,13 @@ export class CustomValidators{
             confirmPassword.setErrors(null);
             return null
         }
+    }
+
+    static requiredFile(formControl: FormControl){
+        const files = formControl.value;
+        if(files.length===0){
+            return {required: true}
+        }
+        return null;
     }
 }

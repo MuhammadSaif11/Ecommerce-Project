@@ -4,6 +4,8 @@ package com.app.ecommerce.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "product")
 @Builder
@@ -24,4 +26,10 @@ public class Product {
     private String productActualPrice;
     @Column(name = "product_discounted_price")
     private String productDiscountedPrice;
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @JoinTable(name = "product_image",
+            joinColumns = {@JoinColumn(name = "product_id")},
+            inverseJoinColumns = {@JoinColumn(name = "image_id")}
+    )
+    private Set<ImageModel> productImages;
 }

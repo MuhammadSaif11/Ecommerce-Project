@@ -1,4 +1,10 @@
 export class Product{
+    public get getProductID(): number {
+        return this.productID;
+    }
+    public set setProductID(value: number) {
+        this.productID = value;
+    }
     public get getProductDiscountedPrice(): number {
         return this.productDiscountedPrice;
     }
@@ -26,10 +32,12 @@ export class Product{
 
     constructor
     (
+        private productID?: number,
         private productName?: string,
         private productDescription?: string,
         private productActualPrice?: number,
         private productDiscountedPrice?: number,
+        private productImages?:File[]
     ){}
 
 

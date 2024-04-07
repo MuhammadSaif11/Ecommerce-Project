@@ -4,6 +4,22 @@
         <app-sidebar></app-sidebar>
     </div>
     <main class="main">
+        <ng-container *ngIf="isAdmin() && loggedIn()">
+            <nav class="admin-nav">
+                <ul class="navigation">
+                    <li class="navigation__item">
+                        <a routerLink="/add" class="navigation__link">
+                            Add new product
+                        </a>
+                    </li>
+                    <li class="navigation__item">
+                        <a routerLink="/add" class="navigation__link">
+                            Delete product
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </ng-container>
        <router-outlet></router-outlet>
     </main>
 </div>

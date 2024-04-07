@@ -1,7 +1,8 @@
 package com.app.ecommerce.service;
 
-import com.app.ecommerce.entity.Product;
+import com.app.ecommerce.dto.ProductDto;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface ProductService {
-    Product saveProduct(Product product);
+    ProductDto saveProduct(ProductDto productDto, MultipartFile[] files);
 }

@@ -9,8 +9,7 @@ export class ProductService {
   private api:string = 'http://localhost:8080/product';
   private http:HttpClient = inject(HttpClient);
 
-  addProduct(product:Product){
-    console.log(product);
+  addProduct(product:FormData){
     return this.http.post<Product>(this.api + '/add',product)
   }
 }

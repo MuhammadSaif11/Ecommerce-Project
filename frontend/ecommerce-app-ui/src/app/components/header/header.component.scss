@@ -201,33 +201,3 @@
         margin-top: .5rem;
     }
 }
-.admin-nav{
-    background-color: var(--color-primary);
-    margin-top: 7rem;
-    margin-bottom: -7rem;
-}
-
-.navigation{
-    display: flex;
-    font-size: 1.4rem;
-    list-style: none;
-     &__link{
-        &:link,
-        &:visited{
-            text-decoration: none;
-            text-transform: uppercase;
-            display: flex;
-            padding: 1.5rem;
-            align-items: center;
-            color: #fff;
-            transition: all .2s;
-        }
-        &:hover{
-            background-color: var(--color-primary-light);
-        }
-        &:active{
-            background-color: rgba(var(--color-primary-light),.8);
-            
-        }
-     }
-}

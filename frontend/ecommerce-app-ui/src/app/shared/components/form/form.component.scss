@@ -1,7 +1,7 @@
 
 $color-primary: #eb2f64;
 .form-container{
-    background-image: linear-gradient(60deg, rgba(240,240,240, 0.9) 60%, rgba($color-primary,.8) 40%);
+    background-image: linear-gradient(60deg, rgba(240,240,240, 0.9) 60%, rgba(240,240,240, 0.9) 40%);
     background-color: rgba($color: #000000, $alpha: .8);
     padding: 1.5rem 3rem;
     box-shadow: var(--shadow-dark);
@@ -10,4 +10,5 @@ $color-primary: #eb2f64;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }

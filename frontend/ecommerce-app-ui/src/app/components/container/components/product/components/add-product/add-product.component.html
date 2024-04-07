@@ -7,22 +7,35 @@
             <app-input>
                 <input formControlName="productName" type="text" class="input-text" placeholder="product name" id="productName">
             </app-input>
+            <small class="error" *ngIf="productForm.get('productName').invalid && productForm.get('productName').touched">product name cannot be blank</small>
         </div>
         <div class="form__group">
             <app-input>
                 <textarea formControlName="productDescription" type="text" class="input-text" placeholder="product description" id="productDescription" cols="30" rows="4"></textarea>
             </app-input>
+            <small class="error" *ngIf="productForm.get('productDescription').invalid && productForm.get('productDescription').touched">product description cannot be blank</small>
         </div>
         <div class="form__group-parent">
             <div class="form__group">
                 <app-input>
                     <input formControlName="productActualPrice" type="number" class="input-text" placeholder="product actual price" id="productActualPrice">
                 </app-input>
+                <small class="error" *ngIf="productForm.get('productActualPrice').invalid && productForm.get('productActualPrice').touched">product actual price cannot be blank</small>
             </div>
             <div class="form__group">
                 <app-input>
                     <input formControlName="productDiscountedPrice" type="number" class="input-text" placeholder="product discounted price" id="productDiscountedPrice" >
                 </app-input>
+                <small class="error" *ngIf="productForm.get('productDiscountedPrice').invalid && productForm.get('productDiscountedPrice').touched">product discounted price cannot be blank</small>
+            </div>
+        </div>
+        <div class="form__group">
+            <input type="file" id="productImages" multiple (change)="onFileSelected($event)">
+        </div>
+        <div class="gallery">
+            <div class="gallery__item" *ngFor="let url of urls;index as i">
+                <img [src]="url" class="gallery__image">
+                <div class="gallery__item-remover" (click)="remove(i)"></div>
             </div>
         </div>
         <div class="form__group">
