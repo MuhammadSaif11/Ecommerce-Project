@@ -1,0 +1,62 @@
+:host ::ng-deep .table{
+    width: 100%;
+    font-family: inherit;
+    font-size: 1.2rem;
+    box-shadow: var(--shadow-dark);
+    border-collapse: collapse;
+
+    &__cell{
+        &:not(:first-child){
+           border-left : 1px solid var(--color-grey-dark-3);
+        }
+    }
+    
+    &__row{
+        &:not(:last-child){
+            border-bottom : 1px solid var(--color-grey-dark-3);
+         }
+    }
+
+    &__heading{
+        padding: 1rem;
+        font-weight: 600;
+        color: var(--color-grey-dark-1);
+        background-color: var(--color-grey-light-4);
+        text-transform: uppercase;
+        transition: all .2s;
+        &:hover{
+            background-color: var(--color-grey-dark-3);
+            color: black;
+        }
+    }
+
+    &__cell{
+        font-weight: 400;
+        padding: 0.5rem 1rem;
+        background-color: var(--color-grey-dark-1);
+        transition: all .2s;
+        color: #fff;
+        &:hover{
+            background-color: var(--color-primary);
+        }
+    }
+
+    &__icon-box{
+        position: relative;
+        text-align: center;
+        background-color: var(--color-grey-dark-1);
+        cursor: pointer;
+        &:hover{
+            background-color: var(--color-primary);
+        }
+    }
+
+    &__icon{
+        margin-top: .5rem;
+        height: 2rem;
+        width: 2rem;
+        fill: #fff;
+    }
+
+
+}

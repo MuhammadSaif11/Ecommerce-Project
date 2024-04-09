@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, ElementRef, inject } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CustomError } from 'src/app/models/CustomError.model';
 import { CustomValidators } from 'src/validators/custom-validators';
 import { ProductService } from 'src/app/shared/services/product.service';
@@ -18,12 +18,15 @@ export class AddProductComponent {
   formBuilder: FormBuilder = inject(FormBuilder);
   productForm:FormGroup;
   router:Router = inject(Router);
+  activatedRoute:ActivatedRoute = inject(ActivatedRoute);
   productService:ProductService = inject(ProductService);
   elementRef: ElementRef = inject(ElementRef);
   error:CustomError;
-  changeDetection:ChangeDetectorRef = inject(ChangeDetectorRef);
   sanitizer:DomSanitizer = inject(DomSanitizer);
   urls:any = [];
+  isEdit = false;
+  productId:bigint;
+  product:any;
 
   ngOnInit(): void {
     this.productForm = this.formBuilder.group({
@@ -33,6 +36,25 @@ export class AddProductComponent {
       'productDiscountedPrice':[null,[Validators.required]],
       'productImages':[[],[CustomValidators.requiredFile]]
     })
+    this.activatedRoute.params.subscribe({
+      next:(param)=>{
+        if(param['productId']){
+          this.isEdit = true;
+          this.productId = param['productId'];
+          this.product = history.state
+        }
+      }
+    })
+    if(this.isEdit){
+      this.productForm.setValue({
+        'productName':this.product.productName,
+        'productDescription':this.product.productDescription,
+        'productActualPrice':this.product.productActualPrice,
+        'productDiscountedPrice':this.product.productDiscountedPrice,
+        'productImages':this.product.productImages
+      });
+      Array.from(this.product.productImages).forEach((file:File) => this.urls.push(this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(file))))
+    }
   }
   addProduct(){
     const formdata:FormData = this.prepareFormData(this.productForm.value);
@@ -48,6 +70,7 @@ export class AddProductComponent {
 
   prepareFormData(product: Product):FormData{
     const productDto = {
+      'productId':this.product?this.product.productId:null,
       'productName':this.productForm.get('productName').value,
       'productDescription':this.productForm.get('productDescription').value,
       'productActualPrice':this.productForm.get('productActualPrice').value,
@@ -56,7 +79,7 @@ export class AddProductComponent {
     const formData = new FormData();
     formData.append('product',new Blob([JSON.stringify(productDto)],{type:'application/json'}));
     const productImages = this.productForm.get('productImages').value;
-    productImages.forEach((img:File) => formData.append('images',img))
+    productImages.forEach((img:File) => formData.append('productImages',img))
     return formData;
   }
   onFileSelected(event:any){

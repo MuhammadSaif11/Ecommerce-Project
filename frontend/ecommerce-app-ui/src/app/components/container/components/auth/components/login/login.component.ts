@@ -23,7 +23,6 @@ export class LoginComponent implements OnInit{
 
   ngOnInit(): void {
     this.data = history.state;
-    console.log(this.data)
     this.LoginForm = this.formBuilder.group({
       'username': ['',Validators.required],
       'password': ['',Validators.required]

@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="gallery">
+        <ng-container *ngIf="urls.length > 0; else noImages">
+            <div class="gallery__item" *ngFor="let url of urls">
+                <img [src]="url" class="gallery__image">
+            </div>
+        </ng-container>
+        <ng-template #noImages>
+            <div class="message">
+                there are no images for this product
+            </div>
+        </ng-template>
+        <div class="gallery__remover" (click)="close()"></div>
+    </div>
+</div>

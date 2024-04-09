@@ -4,9 +4,9 @@ import { ProductComponent } from './components/product/product.component';
 import { AuthComponent } from './components/auth/auth.component';
 
 const routes: Routes = [
-  { path:"product",component:ProductComponent,loadChildren:()=> import("./components/product/product-routing.module").then(r=>r.ProductRoutingModule)},
+  { path:"products",component:ProductComponent,loadChildren:()=> import("./components/product/product-routing.module").then(r=>r.ProductRoutingModule)},
   {path: 'auth', component:AuthComponent,loadChildren:()=> import("./components/auth/auth-routing.module").then(r=>r.AuthRoutingModule)},
-  {path:"",redirectTo:"product",pathMatch:'full'}
+  {path:"",redirectTo:"products",pathMatch:'full'}
 ];
 
 @NgModule({

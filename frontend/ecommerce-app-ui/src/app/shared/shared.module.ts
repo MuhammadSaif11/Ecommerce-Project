@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AlertBoxComponent } from './components/alert-box/alert-box.component';
+import { TableComponent } from './components/table/table.component';
 
 
 
@@ -21,6 +22,7 @@ import { AlertBoxComponent } from './components/alert-box/alert-box.component';
     RadioButtonComponent,
     SearchComponent,
     AlertBoxComponent,
+    TableComponent,
   ],
   imports: [
     CommonModule,
@@ -35,6 +37,7 @@ import { AlertBoxComponent } from './components/alert-box/alert-box.component';
     RadioButtonComponent,
     SearchComponent,
     AlertBoxComponent,
+    TableComponent,
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule

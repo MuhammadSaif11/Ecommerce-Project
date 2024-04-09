@@ -1,0 +1,44 @@
+<app-table>
+    <thead class="table__head">
+        <tr class="table__row">
+            <th class="table__heading" *ngFor="let col of cols">
+                {{col}}
+            </th>
+        </tr>
+    </thead>
+    <tbody class="table__body">
+        <tr class="table__row" *ngFor="let product of products;index as i">
+            <td class="table__cell">
+                {{product.getProductId}}
+            </td>
+            <td class="table__cell">
+                {{product.getProductName}}
+            </td>
+            <td class="table__cell">
+                {{product.getProductDescription}}
+            </td>
+            <td class="table__cell">
+                {{product.getProductActualPrice}}
+            </td>
+            <td class="table__cell">
+                {{product.getProductDiscountedPrice}}
+            </td>
+            <td class="table__cell table__icon-box" (click)="openImages(product.getProductImages)">
+                <svg  class="table__icon">
+                    <use xlink:href="../../../assets/images/sprite.svg#icon-images"></use>
+                </svg>
+            </td>
+            <td class="table__cell table__icon-box" (click)="editProduct(product)">
+                <svg  class="table__icon">
+                    <use xlink:href="../../../assets/images/sprite.svg#icon-edit"></use>
+                </svg>
+            </td>
+            <td class="table__cell table__icon-box" (click)="deleteProduct(product)">
+                <svg  class="table__icon">
+                    <use xlink:href="../../../assets/images/sprite.svg#icon-trash"></use>
+                </svg>
+            </td>
+        </tr>
+    </tbody>
+</app-table>
+<app-show-product-images *ngIf="openImagesComponent" [urls]="url" (closeComponent)="closeImagesComponent($event)"></app-show-product-images>

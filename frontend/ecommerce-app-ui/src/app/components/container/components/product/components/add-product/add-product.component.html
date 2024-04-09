@@ -39,7 +39,7 @@
             </div>
         </div>
         <div class="form__group">
-            <app-button [disableValue]="productForm.invalid" [btnClasses]="['btn','btn--animated']" [btnType]="'submit'">Add product</app-button>
+            <app-button [disableValue]="productForm.invalid" [btnClasses]="['btn','btn--animated']" [btnType]="'submit'">{{isEdit?'Edit product':'Add product'}}</app-button>
         </div>
     </form>
 </app-form>

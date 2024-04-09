@@ -1,9 +1,15 @@
 export class Product{
-    public get getProductID(): number {
-        return this.productID;
+    public get getProductImages(): File[] {
+        return this.productImages;
     }
-    public set setProductID(value: number) {
-        this.productID = value;
+    public set setProductImages(value: File[]) {
+        this.productImages = value;
+    }
+    public get getProductId(): bigint {
+        return this.productId;
+    }
+    public set setProductId(value: bigint) {
+        this.productId = value;
     }
     public get getProductDiscountedPrice(): number {
         return this.productDiscountedPrice;
@@ -32,12 +38,12 @@ export class Product{
 
     constructor
     (
-        private productID?: number,
+        private productId?: bigint,
         private productName?: string,
         private productDescription?: string,
         private productActualPrice?: number,
         private productDiscountedPrice?: number,
-        private productImages?:File[]
+        private productImages?: File[]
     ){}
 
 
