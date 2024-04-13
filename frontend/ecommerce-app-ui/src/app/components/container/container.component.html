@@ -13,13 +13,14 @@
                         </a>
                     </li>
                     <li class="navigation__item">
-                        <a routerLink="/add" class="navigation__link">
-                            Delete product
+                        <a routerLink="/products/details" class="navigation__link">
+                            Products Details
                         </a>
                     </li>
                 </ul>
             </nav>
         </ng-container>
-       <router-outlet></router-outlet>
+        <app-loader *ngIf="showLoader"></app-loader>
+       <router-outlet *ngIf="!showLoader"></router-outlet>
     </main>
 </div>

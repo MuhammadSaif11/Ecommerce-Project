@@ -1,7 +1,8 @@
 <nav class="sidebar" [ngClass]="{'sidebar-open': isSidebarOpen, 'sidebar-closed': !isSidebarOpen}">
     <ul class="side-nav">
-        <li class="side-nav__item side-nav__item--active">
-            <a href="#" class="side-nav__link">
+        <li class="side-nav__item">
+            <a routerLink="/products" class="side-nav__link" routerLinkActive="side-nav__item-active" [routerLinkActiveOptions]="{exact:
+                true}">
                 <svg class="side-nav__icon">
                     <use xlink:href="../../../assets/images/sprite.svg#icon-shopping-bag"></use>
                 </svg>
@@ -9,15 +10,17 @@
             </a>
         </li>
         <li class="side-nav__item side-nav__item--active">
-            <a href="#" class="side-nav__link">
+            <a href="#" class="side-nav__link" routerLinkActive="side-nav__item-active" [routerLinkActiveOptions]="{exact:
+                true}">
                 <svg class="side-nav__icon">
                     <use xlink:href="../../../assets/images/sprite.svg#icon-border_color"></use>
                 </svg>
                 <span>orders</span>
             </a>
         </li>
-        <li class="side-nav__item side-nav__item--active">
-            <a href="#" class="side-nav__link">
+        <li class="side-nav__item side-nav__item--active" >
+            <a href="#" class="side-nav__link" routerLinkActive="side-nav__item-active" [routerLinkActiveOptions]="{exact:
+                true}">
                 <svg class="side-nav__icon">
                     <use xlink:href="../../../assets/images/sprite.svg#icon-credit-card"></use>
                 </svg>
@@ -25,7 +28,8 @@
             </a>
         </li>
         <li class="side-nav__item side-nav__item--active">
-            <a href="#" class="side-nav__link">
+            <a href="#" class="side-nav__link" routerLinkActive="side-nav__item-active" [routerLinkActiveOptions]="{exact:
+                true}">
                 <svg class="side-nav__icon">
                     <use xlink:href="../../../assets/images/sprite.svg#icon-cog"></use>
                 </svg>

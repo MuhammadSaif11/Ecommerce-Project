@@ -1,5 +1,5 @@
 <app-form>
-    <div class="margin-bottom-medium">
+    <div class="margin-bottom-small">
         <h2 class="heading-primary">Add Product here</h2>
     </div>
     <form [formGroup]="productForm" (ngSubmit)="addProduct()" class="form">
@@ -33,13 +33,13 @@
             <input type="file" id="productImages" multiple (change)="onFileSelected($event)">
         </div>
         <div class="gallery">
-            <div class="gallery__item" *ngFor="let url of urls;index as i">
+            <div class="gallery__item" *ngFor="let url of imageUrls;index as i">
                 <img [src]="url" class="gallery__image">
                 <div class="gallery__item-remover" (click)="remove(i)"></div>
             </div>
         </div>
         <div class="form__group">
-            <app-button [disableValue]="productForm.invalid" [btnClasses]="['btn','btn--animated']" [btnType]="'submit'">{{isEdit?'Edit product':'Add product'}}</app-button>
+            <app-button [disableValue]="productForm.invalid" [btnClasses]="['btn','btn--animated']" [btnType]="'submit'">{{isEdit?'Update product':'Add product'}}</app-button>
         </div>
     </form>
 </app-form>

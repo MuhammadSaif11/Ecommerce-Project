@@ -39,6 +39,10 @@
         &:hover{
             background-color: var(--color-primary);
         }
+        &::selection{
+            background-color: #fff !important;
+            color: var(--color-primary) !important;
+        }
     }
 
     &__icon-box{
@@ -58,5 +62,5 @@
         fill: #fff;
     }
 
-
 }
+

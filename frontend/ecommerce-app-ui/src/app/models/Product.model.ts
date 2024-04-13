@@ -38,12 +38,12 @@ export class Product{
 
     constructor
     (
-        private productId?: bigint,
-        private productName?: string,
-        private productDescription?: string,
-        private productActualPrice?: number,
-        private productDiscountedPrice?: number,
-        private productImages?: File[]
+        public productId?: bigint,
+        public productName?: string,
+        public productDescription?: string,
+        public productActualPrice?: number,
+        public productDiscountedPrice?: number,
+        public productImages?: File[]
     ){}
 
 

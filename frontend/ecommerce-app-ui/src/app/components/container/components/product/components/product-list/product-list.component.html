@@ -1,0 +1,30 @@
+<div class="products-container">
+    <div class="product" *ngFor="let product of products;index as i">
+        <div class="card">
+            <div class="card__side card__side--front">
+                <div class="card__image">
+                    <img [src]="url[i]" [alt]="product.productName">
+                </div>
+                <div class="card__heading">
+                    <span class="card__heading--span">{{product.productName}}</span>
+                </div>
+                <div class="card__description">
+                    {{product.productDescription}}
+                </div>
+                <div class="card__price">
+                    <div class="card__price--actual">{{product.productActualPrice}}</div>
+                    <div class="card__price--discounted">{{product.productDiscountedPrice}}</div>
+                </div>
+            </div>
+            <div class="card__side card__side--back">
+                <div class="card__cta">
+                    <div class="card__price-box">
+                        <p class="card__price-only">Only</p>
+                        <p class="card__price-value">{{product.productDiscountedPrice}}</p>
+                    </div>
+                    <app-button [btnClasses]="['btn','btn--animated']">product details</app-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

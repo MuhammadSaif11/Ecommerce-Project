@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AlertBoxComponent } from './components/alert-box/alert-box.component';
 import { TableComponent } from './components/table/table.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 
 
@@ -23,6 +24,7 @@ import { TableComponent } from './components/table/table.component';
     SearchComponent,
     AlertBoxComponent,
     TableComponent,
+    LoaderComponent,
   ],
   imports: [
     CommonModule,
@@ -38,6 +40,7 @@ import { TableComponent } from './components/table/table.component';
     SearchComponent,
     AlertBoxComponent,
     TableComponent,
+    LoaderComponent,
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule

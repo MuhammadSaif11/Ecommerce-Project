@@ -9,21 +9,21 @@
     <tbody class="table__body">
         <tr class="table__row" *ngFor="let product of products;index as i">
             <td class="table__cell">
-                {{product.getProductId}}
+                {{product.productId}}
             </td>
             <td class="table__cell">
-                {{product.getProductName}}
+                {{product.productName}}
             </td>
             <td class="table__cell">
-                {{product.getProductDescription}}
+                {{product.productDescription}}
             </td>
             <td class="table__cell">
-                {{product.getProductActualPrice}}
+                {{product.productActualPrice + " $"}}
             </td>
             <td class="table__cell">
-                {{product.getProductDiscountedPrice}}
+                {{product.productDiscountedPrice + " $"}}
             </td>
-            <td class="table__cell table__icon-box" (click)="openImages(product.getProductImages)">
+            <td class="table__cell table__icon-box" (click)="openImages(product.productImages)">
                 <svg  class="table__icon">
                     <use xlink:href="../../../assets/images/sprite.svg#icon-images"></use>
                 </svg>
