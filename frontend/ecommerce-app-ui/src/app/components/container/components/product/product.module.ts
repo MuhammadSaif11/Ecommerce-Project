@@ -7,6 +7,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ShowProductsDetailsComponent } from './components/show-products-details/show-products-details.component';
 import { ShowProductImagesComponent } from './components/show-product-images/show-product-images.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
+import { ProductViewDetailsComponent } from './components/product-view-details/product-view-details.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { ProductListComponent } from './components/product-list/product-list.com
     AddProductComponent,
     ShowProductsDetailsComponent,
     ShowProductImagesComponent,
-    ProductListComponent
+    ProductListComponent,
+    ProductViewDetailsComponent
   ],
   imports: [
     CommonModule,

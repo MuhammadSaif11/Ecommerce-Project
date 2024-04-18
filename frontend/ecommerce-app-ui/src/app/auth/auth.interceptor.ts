@@ -18,12 +18,14 @@ export class AuthInterceptor implements HttpInterceptor{
         return next.handle(modifiedReq).pipe(
             catchError((err:HttpErrorResponse) =>{
                 console.log(err.status)
-                if (err.status === 401) {
+                if (err.status === 401 || err.error.message === 'JWT TOKEN EXPIRED') {
+                    this.userAuthService.clear()
                     this.router.navigate(['/login']);
                 }
-                else if (err.status === 403){
+                else if (err.status === 403) {
                     this.router.navigate(['/forbidden']);
                 }
+                console.log(err)
                 return throwError(() => new Error("something went wrong"));
             }
         ));

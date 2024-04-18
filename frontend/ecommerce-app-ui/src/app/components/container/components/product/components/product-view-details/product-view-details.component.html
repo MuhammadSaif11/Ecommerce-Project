@@ -1,0 +1,27 @@
+<div class="product">
+    <div class="product__images">
+        <div class="product__images--selected">
+            <img [src]="selectedImage" [alt]="product.productName">
+        </div>
+        <ng-container *ngIf="urls.length > 1">
+            <div class="product__images--all">
+                <div class="product__image" *ngFor="let url of urls;index as i" (click)="change(i)">
+                    <img [src]="url" [alt]="product.productName">
+                </div>
+            </div>
+        </ng-container>
+    </div>
+    <div class="product__details">
+        <div class="margin-bottom-small">
+            <h2 class="heading-primary">{{product.productName}}</h2>
+        </div>
+        <div class="product__description">
+            {{product.productDescription + "modi non harum ab autem laborum ipsum labore cupiditate expedita! Minus quia nostrum voluptatem blanditiis beatae consequatur amet, laborum error atque minima aliquid!            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur in odio velit? Autem magni ipsum quis esse rerum amet cumque, ad impedit atque! Vero, ad quos sed modi non harum ab autem laborum ipsum labore cupiditate expedita! Minus quia nostrum voluptatem blanditiis beatae consequatur amet, laborum error atque minima aliquid!            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur in odio velit? Autem magni ipsum quis esse rerum amet cumque, ad impedit atque! Vero, ad quos sed modi non harum ab autem laborum ipsum labore cupiditate expedita! Minus quia nostrum voluptatem blanditiis beatae consequatur amet, laborum error atque minima aliquid!"}}
+        </div>
+        <div class="product__price-box">
+            <span>{{product.productActualPrice}}</span>
+            <span>{{"NOW ONLY AT "+product.productDiscountedPrice+"$"}}</span>
+        </div>
+        <app-button (click)="addToCart(product.productId)"  [btnClasses]="['btn','btn--animated']">Add to cart</app-button>
+    </div>
+</div>

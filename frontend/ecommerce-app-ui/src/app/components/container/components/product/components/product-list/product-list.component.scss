@@ -3,38 +3,39 @@ $color-primary-dark: #ba265d;
 .products-container{
     display: flex;
     flex-wrap: wrap;
+    // background-image: linear-gradient(60deg, rgba(240,240,240, 0.8) 60%, rgba(240,240,240, 0.8) 40%);
+    // background-color: rgba($color: #000000, $alpha: .8);
     justify-content: space-evenly;
+    background-color: var(--color-grey-light-2);
 }
 
 .product{
-    flex: 0 0 30%;
+    flex: 0 0 28%;
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
 
 .card{
-    height: 41rem;
+    min-height: 40rem;
     perspective: 150rem;
     -moz-perspective: 150rem;
     position: relative;
 
 
     &__side{
-        border-radius: 1rem;
+        border-radius: .5rem;
         overflow: hidden;
-        box-shadow: var(--shadow-dark);
-        height: 41rem;
+        box-shadow: 0 1rem 2rem rgba(0,0,0,.1);
         position: absolute;
         top:0;
         left: 0;
         width: 100%;
-        height: 100%;
+        min-height: 40rem;
         transition: all .7s ease-out;
         backface-visibility: hidden;
 
         &--front{
-            background-image: linear-gradient(60deg, rgba(240,240,240, 0.8) 60%, rgba(240,240,240, 0.8) 40%);
-            background-color: rgba($color: #000000, $alpha: .8);
+            background-color: whitesmoke;
         }
     
         &--back{
@@ -61,10 +62,11 @@ $color-primary-dark: #ba265d;
     }
 
     &__heading{
-        font-size: 2.8rem;
+        font-size: 2.4rem;
         font-weight: 300;
+        margin-top: 1rem;
         margin-left: 1rem;
-        letter-spacing: 3px;
+        letter-spacing: 2px;
         text-transform: uppercase;
         color: var(--color-primary);
     }
@@ -74,6 +76,11 @@ $color-primary-dark: #ba265d;
         margin-left: 1rem;
         margin-top: 1rem;
         color: var(--color-grey-dark-2);
+        height: 8rem;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
     }
 
     &__price{
@@ -83,12 +90,12 @@ $color-primary-dark: #ba265d;
         margin-top: 3rem;
         justify-content: space-between;
         font-size: 2rem;
-        font-weight: 400;
+        font-weight: 300;
         color: var(--color-primary);
 
         &--actual{
             text-decoration: line-through;
-            text-decoration-color: var(--color-grey-dark-1);
+            text-decoration-color: var(--color-primary);
         }
     }
 
@@ -104,7 +111,7 @@ $color-primary-dark: #ba265d;
         text-align: center;
         color: #fff;
         text-transform: uppercase;
-        margin-bottom: 8rem;
+        margin-bottom: 6rem;
     }
 
     &__price-only{
@@ -114,4 +121,10 @@ $color-primary-dark: #ba265d;
         font-size: 6rem;
         font-weight: 100;
     }
+
+    // &__buttons{
+    //     // display: flex;
+    //     // justify-content: space-around;
+
+    // }
 }

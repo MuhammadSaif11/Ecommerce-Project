@@ -14,11 +14,11 @@
                 </svg>
                 <span class="user-nav__notification">7</span>
             </div>
-            <div class="user-nav__icon-box">
+            <div class="user-nav__icon-box" (click)="toCart()">
                 <svg class="user-nav__icon">
                     <use xlink:href="../../../assets/images/sprite.svg#icon-cart"></use>
                 </svg>
-                <span class="user-nav__notification">9</span>
+                <span *ngIf="cartLength > 0" class="user-nav__notification">{{cartLength}}</span>
             </div>
             <div class="user-nav__user" (click)="openDropdown()">
                 <svg class="user-nav__user-photo">
@@ -30,7 +30,7 @@
                 </svg>
                 <ul [ngClass]="{'user-nav__list-open':dropdown}" class="user-nav__list">
                     <li class="user-nav__item">
-                        <a routerLink="/auth/login" (click)="logout()" class="user-nav__logout-link">
+                        <a routerLink="/products" (click)="logout()" class="user-nav__logout-link">
                             <svg  class="user-nav__logout-icon">
                                 <use xlink:href="../../../assets/images/sprite.svg#icon-unlocked"></use>
                             </svg>

@@ -25,3 +25,13 @@ export const canActivate = (route:ActivatedRouteSnapshot) => {
     return false;
   }
 };
+
+export const activateForNotLoggedIn = (route:ActivatedRouteSnapshot) => {
+  const userAuthService: UserAuthService = inject(UserAuthService);
+  const router: Router = inject(Router);
+  if(userAuthService.getToken() === null && userAuthService.getRoles() === null && !userAuthService.isLoggedIn()) {
+    return true
+  }
+  router.navigate(['/forbidden']);
+  return false;
+}

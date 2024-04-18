@@ -21,6 +21,8 @@ import java.io.IOException;
 
 @Component
 public class JwtAuthFilter extends OncePerRequestFilter {
+
+    public static String CURRENT_USER = null;
     private UserServiceImpl userService;
     private JwtService jwtService;
 
@@ -44,6 +46,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             if (authHeader != null && authHeader.startsWith("Bearer ")) {
                 token = authHeader.substring(7);
                 username = jwtService.extractUsername(token);
+                this.CURRENT_USER = username;
                 logger.info("username is" + username);
             }
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {

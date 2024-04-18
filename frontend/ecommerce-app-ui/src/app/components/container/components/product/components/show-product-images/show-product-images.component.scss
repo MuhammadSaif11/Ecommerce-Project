@@ -14,13 +14,14 @@
 }
 .gallery{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     position: relative;
     flex-wrap: wrap;
-    padding: 1rem;
+    padding: 1rem 2rem;
     border-radius: 1rem;
     width: 80vw;
-    min-height: 80vh;
+    height: 80vh;
+    overflow: scroll;
     background-image: linear-gradient(60deg, rgba(240,240,240, 0.9) 60%, rgba(240,240,240, 0.9) 40%);
     background-color: rgba($color: #000000, $alpha: .8);
     box-shadow:var(--shadow-dark);
@@ -33,9 +34,9 @@
             height: 3px;
             position: absolute;
             background-color: var(--color-primary);
-            top: 1.5rem;
+            top: 1.1rem;
             cursor: pointer;
-            right: 1rem;
+            right: .5rem;
         }
         &::before{
 

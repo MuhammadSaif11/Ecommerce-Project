@@ -80,7 +80,9 @@ export class AddProductComponent {
       const currentValue = productImagesControl.value;
       currentValue.push(...files);
       productImagesControl.setValue(currentValue);
-      this.imageUrls = this.imageProcessingService.getUrlOfImageFile(Array.from(files))
+      Array.from(files).forEach((file:File) =>{
+        this.imageUrls.push(this.imageProcessingService.getSingleUrlOfImageFile(file));
+      });
       console.log(this.imageUrls)
     }
   }

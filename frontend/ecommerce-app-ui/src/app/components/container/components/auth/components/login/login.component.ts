@@ -5,6 +5,7 @@ import { CustomError } from 'src/app/models/CustomError.model';
 import { JwtToken } from 'src/app/models/JwtToken.model';
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 import { UserService } from 'src/app/shared/services/user.service';
+import { CartService } from '../../../cart/services/cart.service';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit{
   userAuthService:UserAuthService = inject(UserAuthService);
   router:Router = inject(Router);
   error:CustomError;
+  cartService:CartService = inject(CartService);
   data;
  
 
@@ -40,11 +42,18 @@ export class LoginComponent implements OnInit{
         this.userAuthService.setToken(token);
         this.userAuthService.setuserFullname(fullname);
         this.userAuthService.userFullname.next(fullname);
+        if(this.userAuthService.isUser()){
+          this.cartService.getCartLength().subscribe({
+            next:(length:number)=>{
+              this.cartService.cartLengthSubject.next(length)
+            }
+          })
+        }
         if(roles[0] == "ROLE_ADMIN"){
-          this.router.navigate(["/product"])
+          this.router.navigate(["/products"])
         }
         else{
-          this.router.navigate(["/product"])
+          this.router.navigate(["/products"])
         }
       },
       error:(error)=>{

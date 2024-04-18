@@ -35,6 +35,12 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
+    @GetMapping("/{productId}")
+    public ProductResponseDto getProductById(@PathVariable Long productId){
+        return productService.getProductById(productId);
+    }
+
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @DeleteMapping("/{productId}")
     void deleteProduct(@PathVariable Long productId){
         productService.deleteProduct(productId);

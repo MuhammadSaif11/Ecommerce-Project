@@ -23,9 +23,9 @@ public class Product {
     @Column(name = "product_description")
     private String productDescription;
     @Column(name = "product_actual_price")
-    private String productActualPrice;
+    private Double productActualPrice;
     @Column(name = "product_discounted_price")
-    private String productDiscountedPrice;
+    private Double productDiscountedPrice;
     @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinTable(name = "product_image",
             joinColumns = {@JoinColumn(name = "product_id")},

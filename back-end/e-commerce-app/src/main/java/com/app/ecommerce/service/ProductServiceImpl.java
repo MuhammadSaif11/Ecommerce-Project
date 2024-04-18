@@ -12,10 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -63,5 +60,11 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public void deleteProduct(Long productId) {
         productDao.deleteById(productId);
+    }
+
+    @Override
+    public ProductResponseDto getProductById(Long productId) {
+        Optional<Product> productResponseDto =  productDao.findById(productId);
+        return this.modelMapper.map(productResponseDto.get(),ProductResponseDto.class);
     }
 }

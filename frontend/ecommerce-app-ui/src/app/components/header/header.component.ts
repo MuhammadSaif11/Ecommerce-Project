@@ -2,6 +2,7 @@ import {  AfterViewInit, Component, ElementRef, HostListener, OnInit, Renderer2,
 import { Router } from '@angular/router';
 import { NavToggleService } from 'src/app/shared/services/nav-toggle.service';
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
+import { CartService } from '../container/components/cart/services/cart.service';
 
 
 @Component({
@@ -15,13 +16,10 @@ export class HeaderComponent implements OnInit {
 
   private navToggle:NavToggleService = inject(NavToggleService);
   private userAuthService:UserAuthService = inject(UserAuthService);
+  private cartService:CartService = inject(CartService);
+  private router:Router = inject(Router);
   public userFullname:string;
-
-  @ViewChild("list") list: ElementRef;
-
-  // @HostListener('click') onClick(){
-  //   this.renderer.setStyle(this.openDropdown,"top","7rem");
-  // }
+  public cartLength:number;
 
   dropdown:boolean=false;
   toggle:boolean=false;
@@ -30,6 +28,10 @@ export class HeaderComponent implements OnInit {
     this.userAuthService.userFullname.subscribe((userFullname) => {
       this.userFullname = userFullname;
     })
+
+    if(this.userAuthService.isUser()){
+      this.cartService.cartLength$.subscribe(data => this.cartLength = data)
+    }
   }
 
   logout(){
@@ -49,7 +51,12 @@ export class HeaderComponent implements OnInit {
     this.toggle = !this.toggle;
     this.navToggle.toggleSidebar();
   }
+
   isAdmin(){
     return this.userAuthService.isAdmin();
+  }
+
+  toCart(){
+    this.router.navigate(['/cart']);
   }
 }
