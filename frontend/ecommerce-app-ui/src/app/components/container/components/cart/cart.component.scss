@@ -1,7 +1,11 @@
 .cart {
-    border: 1px solid #ccc;
+    background-image: linear-gradient(60deg, rgba(240,240,240, 0.9) 60%, rgba(240,240,240, 0.9) 40%);
+    background-color: rgba($color: #000000, $alpha: .8);
+    border-radius: 1rem;
+    padding: 1.5rem 3rem;
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0,.4);
     padding: 20px;
-    border-radius: 5px;
+ 
   
     &__title {
       font-size: 24px;
@@ -49,12 +53,17 @@
       }
 
       &-remove {
-        background-color: #ff0000;
+        background-color: orangered;
         color: #fff;
         border: none;
-        border-radius: 5px;
-        padding: 5px 10px;
+        border-radius: 3px;
+        padding: .8rem 1.5rem;
         cursor: pointer;
+        transition: all .2s;
+
+        &:hover{
+          background-color: orange;
+        }
       }
     }
 
@@ -74,30 +83,21 @@
         font-weight: bold;
       }
     }
-  
-    &__checkout {
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      padding: 10px 20px;
-      font-size: 18px;
-      cursor: pointer;
-      margin-top: 20px;
-    }
   }
 
   .quantity-control {
     display: flex;
     align-items: center;
+    font-size: 1.4rem;
   }
   
   .quantity-btn {
+    font-size: 1.4rem;
     background-color: #007bff;
     color: #fff;
     border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
+    border-radius: 3px;
+    padding: .8rem 1.5rem;
     cursor: pointer;
     margin: 0 5px;
     transition: background-color 0.3s ease;

@@ -1,0 +1,47 @@
+<div class="checkout">
+    <div class="checkout__form">
+                <div class="margin-bottom-small">
+                    <h2 class="heading-primary">Place Order</h2>
+                </div>
+                <form [formGroup]="checkoutForm" (ngSubmit)="placeOrder()" class="form">
+                    <div class="form__group">
+                        <app-input>
+                            <input type="text" class="input-text" placeholder="Fullname" id="fullname" formControlName="fullname" autocomplete>
+                        </app-input>
+                        <small class="error" *ngIf="checkoutForm.get('fullname').invalid && checkoutForm.get('fullname').touched">fullname cannot be blank</small>
+                    </div>
+                    <div class="form__group">
+                        <app-input>
+                            <input type="tel" class="input-text" placeholder="Contact Number" id="contactNumber" formControlName="contactNumber" autocomplete>
+                        </app-input>
+                        <small class="error" *ngIf="checkoutForm.get('contactNumber').invalid && checkoutForm.get('contactNumber').touched">contact number cannot be blank</small>
+                    </div>
+                    <div class="form__group">
+                        <app-input>
+                            <input type="text" class="input-text" placeholder="Full Address" id="fullAddress" formControlName="fullAddress" autocomplete>
+                        </app-input>
+                        <small class="error" *ngIf="checkoutForm.get('fullAddress').invalid && checkoutForm.get('fullAddress').touched">contact number cannot be blank</small>
+                    </div>
+                    <div class="form__group">
+                        <app-button [disableValue]="checkoutForm.invalid" [btnClasses]="['btn','btn--animated']" [btnType]="'submit'">Place order</app-button>
+                    </div>
+                </form>
+
+    </div>
+    <div class="checkout__products">
+        <div class="checkout__product" *ngFor="let cartItem of cartItems;index as i">
+            <div class="checkout__product-image" >
+                <img [src]="urls[i]" [alt]="cartItem.product.productName">
+            </div>
+            <div class="checkout__product-details">
+                <h3 class="checkout__product-name">{{cartItem.product.productName}}</h3>
+                <span class="checkout__product-quantity">{{"quantity: "+cartItem.quantity}}</span>
+                <span class="checkout__product-amount">{{"amount: "+cartItem.product.productDiscountedPrice * cartItem.quantity +"$"}}</span>
+            </div>
+        </div>
+        <div class="checkout__total-amount">
+            <span class="key">total amount</span>
+            <span>{{totalAmount+"$"}}</span>
+        </div>
+    </div>
+</div>

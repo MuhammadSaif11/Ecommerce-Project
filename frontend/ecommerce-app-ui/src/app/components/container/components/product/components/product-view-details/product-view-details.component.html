@@ -3,7 +3,7 @@
         <div class="product__images--selected">
             <img [src]="selectedImage" [alt]="product.productName">
         </div>
-        <ng-container *ngIf="urls.length > 1">
+        <ng-container>
             <div class="product__images--all">
                 <div class="product__image" *ngFor="let url of urls;index as i" (click)="change(i)">
                     <img [src]="url" [alt]="product.productName">

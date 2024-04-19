@@ -14,7 +14,7 @@
                 </svg>
                 <span class="user-nav__notification">7</span>
             </div>
-            <div class="user-nav__icon-box" (click)="toCart()">
+            <div class="user-nav__icon-box"*ngIf="isUser()" (click)="toCart()">
                 <svg class="user-nav__icon">
                     <use xlink:href="../../../assets/images/sprite.svg#icon-cart"></use>
                 </svg>

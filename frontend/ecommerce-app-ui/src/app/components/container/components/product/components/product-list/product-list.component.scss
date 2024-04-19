@@ -62,8 +62,8 @@ $color-primary-dark: #ba265d;
     }
 
     &__heading{
-        font-size: 2.4rem;
-        font-weight: 300;
+        font-size: 2.5rem;
+        font-weight: 400;
         margin-top: 1rem;
         margin-left: 1rem;
         letter-spacing: 2px;
@@ -89,8 +89,8 @@ $color-primary-dark: #ba265d;
         margin-right: 1rem;
         margin-top: 3rem;
         justify-content: space-between;
-        font-size: 2rem;
-        font-weight: 300;
+        font-size: 2.5rem;
+        // font-weight: 400;
         color: var(--color-primary);
 
         &--actual{
@@ -122,9 +122,4 @@ $color-primary-dark: #ba265d;
         font-weight: 100;
     }
 
-    // &__buttons{
-    //     // display: flex;
-    //     // justify-content: space-around;
-
-    // }
 }

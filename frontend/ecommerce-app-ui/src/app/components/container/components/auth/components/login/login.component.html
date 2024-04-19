@@ -5,13 +5,13 @@
     <form [formGroup]="LoginForm" (ngSubmit)="login()" class="form margin-bottom-small">
         <div class="form__group">
             <app-input>
-                <input type="text" class="input-text" placeholder="Username" id="username" formControlName="username">
+                <input type="text" class="input-text" placeholder="Username" id="username" formControlName="username" autocomplete>
             </app-input>
             <small class="error" *ngIf="LoginForm.get('username').invalid && LoginForm.get('username').touched">username cannot be blank</small>
         </div>
         <div class="form__group">
             <app-input>
-                <input type="password" class="input-text" placeholder="password" id="password" formControlName="password">
+                <input type="password" class="input-text" placeholder="password" id="password" formControlName="password" autocomplete>
             </app-input>
             <small class="error" *ngIf="LoginForm.get('password').invalid && LoginForm.get('password').touched">password cannot be blank</small>
         </div>

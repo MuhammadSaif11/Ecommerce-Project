@@ -16,11 +16,11 @@
         <button class="cart__item-remove" (click)="removeCartItem(cartItem)">Remove</button>
       </li>
     </ul>
-
     <div class="cart__summary">
       <span class="cart__summary-text">Total:</span>
       <span class="cart__summary-price">{{totalAmount+"$"}}</span>
     </div>
-    <button class="cart__checkout">Checkout</button>
+    <app-button [disableValue]="cart.cartItems.length < 1" [btnClasses]="['btn','btn--animated']" (click)="goToCheckout(cart.cartItems)">Checkout</app-button>
+    <!-- <button class="cart__checkout">Checkout</button> -->
   </div>
   

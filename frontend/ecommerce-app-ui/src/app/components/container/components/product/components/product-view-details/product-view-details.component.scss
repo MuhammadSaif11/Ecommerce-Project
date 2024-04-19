@@ -29,6 +29,7 @@
 
     &__image{
         flex: 0 0 30%;
+        border: 3px solid transparent;
         cursor: pointer;
         padding: 1rem;
         transition: all .2s;

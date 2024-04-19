@@ -1,7 +1,7 @@
 import { Component, ElementRef, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CustomValidators } from 'src/validators/custom-validators';
+import { CustomValidators } from 'src/app/validators/custom-validators';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { Product } from 'src/app/models/Product.model';
 import { DomSanitizer } from '@angular/platform-browser';

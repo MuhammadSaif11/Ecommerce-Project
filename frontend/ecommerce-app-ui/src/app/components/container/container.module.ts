@@ -7,6 +7,7 @@ import { AuthComponent } from './components/auth/auth.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CartComponent } from './components/cart/cart.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 
 
@@ -15,6 +16,7 @@ import { CartComponent } from './components/cart/cart.component';
     ProductComponent,
     AuthComponent,
     CartComponent,
+    CheckoutComponent,
 
   ],
   imports: [

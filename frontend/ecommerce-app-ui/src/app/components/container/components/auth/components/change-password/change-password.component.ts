@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { CustomError } from 'src/app/models/CustomError.model';
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 import { UserService } from 'src/app/shared/services/user.service';
-import { CustomValidators } from 'src/validators/custom-validators';
+import { CustomValidators } from 'src/app/validators/custom-validators';
 
 
 @Component({

@@ -28,10 +28,9 @@ export class HeaderComponent implements OnInit {
     this.userAuthService.userFullname.subscribe((userFullname) => {
       this.userFullname = userFullname;
     })
-
-    if(this.userAuthService.isUser()){
-      this.cartService.cartLength$.subscribe(data => this.cartLength = data)
-    }
+    this.cartService.cartLength$.subscribe(data => {
+      this.cartLength = data
+    })
   }
 
   logout(){
@@ -54,6 +53,10 @@ export class HeaderComponent implements OnInit {
 
   isAdmin(){
     return this.userAuthService.isAdmin();
+  }
+
+  isUser(){
+    return this.userAuthService.isUser();
   }
 
   toCart(){

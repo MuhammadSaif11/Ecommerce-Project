@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, OnInit, inject } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 import { Cart } from 'src/app/models/Cart.model';
 import { CartItem } from 'src/app/models/CartItem.model';
@@ -12,8 +12,8 @@ import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 export class CartService {
   cartLength:number;
   cartLengthSubject:BehaviorSubject<number> = new BehaviorSubject<number>(null);
-  userAuthService:UserAuthService = inject(UserAuthService);
   cartLength$ = this.cartLengthSubject.asObservable();
+  userAuthService:UserAuthService = inject(UserAuthService);
   private api:string = 'http://localhost:8080/carts';
   private http:HttpClient = inject(HttpClient);
 

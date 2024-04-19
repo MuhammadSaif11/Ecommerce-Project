@@ -1,4 +1,5 @@
 package com.app.ecommerce.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.ArrayList;
@@ -23,5 +24,7 @@ public class Order {
     @Column(name = "order_total_amount")
     private Double orderTotalAmount;
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 }

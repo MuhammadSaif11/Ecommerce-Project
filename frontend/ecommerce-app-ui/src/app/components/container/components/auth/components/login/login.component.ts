@@ -49,6 +49,9 @@ export class LoginComponent implements OnInit{
             }
           })
         }
+        else{
+          this.cartService.cartLengthSubject.next(0)
+        }
         if(roles[0] == "ROLE_ADMIN"){
           this.router.navigate(["/products"])
         }
