@@ -6,9 +6,9 @@
                 <form [formGroup]="checkoutForm" (ngSubmit)="placeOrder()" class="form">
                     <div class="form__group">
                         <app-input>
-                            <input type="text" class="input-text" placeholder="Fullname" id="fullname" formControlName="fullname" autocomplete>
+                            <input type="text" class="input-text" placeholder="Fullname" id="fullName" formControlName="fullName" autocomplete>
                         </app-input>
-                        <small class="error" *ngIf="checkoutForm.get('fullname').invalid && checkoutForm.get('fullname').touched">fullname cannot be blank</small>
+                        <small class="error" *ngIf="checkoutForm.get('fullName').invalid && checkoutForm.get('fullName').touched">fullname cannot be blank</small>
                     </div>
                     <div class="form__group">
                         <app-input>

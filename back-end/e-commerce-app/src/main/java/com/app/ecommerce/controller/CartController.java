@@ -58,7 +58,7 @@ public class CartController {
 
     @PreAuthorize("hasAuthority('ROLE_USER')")
     @PostMapping("/cartItem")
-    public CartItem getCartLength(@RequestBody CartItem cartItem){
+    public CartItem updateCartItem(@RequestBody CartItem cartItem){
         return this.cartService.saveCartItem(cartItem);
     }
 
