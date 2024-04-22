@@ -1,5 +1,7 @@
 <div class="cart">
-    <h2 class="cart__title">Your Cart</h2>
+  <div class="margin-bottom-small">
+    <h2 class="heading-primary">My cart</h2>
+  </div>
     <ul class="cart__list">
       <li class="cart__item" *ngFor="let cartItem of cart.cartItems;index as i">
         <img [src]="urls[i]" alt="Product" class="cart__item-image">

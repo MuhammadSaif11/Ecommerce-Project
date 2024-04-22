@@ -10,10 +10,9 @@ import { UserAuthService } from 'src/app/shared/services/user-auth.service';
   providedIn: 'root'
 })
 export class CartService {
-  cartLength:number;
   cartLengthSubject:BehaviorSubject<number> = new BehaviorSubject<number>(null);
   cartLength$ = this.cartLengthSubject.asObservable();
-  userAuthService:UserAuthService = inject(UserAuthService);
+  private userAuthService:UserAuthService = inject(UserAuthService);
   private api:string = 'http://localhost:8080/carts';
   private http:HttpClient = inject(HttpClient);
 

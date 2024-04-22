@@ -8,6 +8,8 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CartComponent } from './components/cart/cart.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { OrderComponent } from './components/order/order.component';
+import { OrderViewDetailComponent } from './components/order/components/order-view-detail/order-view-detail.component';
 
 
 
@@ -17,6 +19,8 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     AuthComponent,
     CartComponent,
     CheckoutComponent,
+    OrderComponent,
+    OrderViewDetailComponent,
 
   ],
   imports: [

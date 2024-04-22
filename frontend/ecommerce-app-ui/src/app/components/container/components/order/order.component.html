@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="margin-bottom-medium">
+        <h2 class="heading-primary">My Orders</h2>
+    </div>
+    <div class="orders">
+        <div class="order" *ngFor="let order of orders;index as i">
+            <div class="order__header">
+                <div class="order__id">
+                    <span class="order__id-text">order id</span>
+                    <span class="order__id-number">{{"#" +order.orderId}}</span>
+                </div>
+                <div class="order__estimated-arrival">
+                    Estimated arrival: 1 Dec 2024
+                </div>
+                <div class="order__status">On Process</div>
+            </div>
+            <div class="order__items">
+                <div class="order__item" *ngFor="let orderItem of order.orderItems;index as j">
+                    <div class="order__item-image">
+                        <img [src]="urls[i][j]" alt="" />
+                    </div>
+                    <div class="order__item-details">
+                        <h4 class="order__item-name">{{orderItem.product.productName}}</h4>
+                        <p class="order__item-quantity">quantity: <b>{{orderItem.quantity}}</b></p>
+                        <p class="order__item-price">total price: <b>{{orderItem.product.productDiscountedPrice * orderItem.quantity}}</b></p>
+                    </div>
+                </div>
+            </div>
+            <div class="order__footer">
+                <p>total:</p>
+                <p><b>{{" "+order.orderTotalAmount+"$"}}</b></p>
+            </div>
+        </div>
+    </div>
+</div>

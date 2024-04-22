@@ -12,7 +12,7 @@ import java.util.Set;
 @NoArgsConstructor
 @ToString
 public class OrderItemDto {
-    private Long orderItemDto;
+    private Long orderItemId;
     private Product product;
     private Integer quantity;
 }

@@ -1,7 +1,8 @@
 package com.app.ecommerce.dto;
 import lombok.*;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Data
 @Builder
@@ -10,10 +11,7 @@ import java.util.Set;
 @ToString
 public class OrderDto {
     private Long orderId;
-    private Set<OrderItemDto> orderItem = new LinkedHashSet<>();
-    private String fullName;
-    private String fullAddress;
-    private String contactNumber;
+    private List<OrderItemDto> orderItems = new ArrayList<>();
     private String orderStatus;
-    private Double orderFullAmount;
+    private Double orderTotalAmount;
 }

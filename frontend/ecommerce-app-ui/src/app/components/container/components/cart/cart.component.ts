@@ -79,6 +79,6 @@ export class CartComponent implements OnInit{
   }
 
   goToCheckout(cartItems:CartItem[]){
-    this.router.navigate(['/checkout'],{state:{data:{cartItems:cartItems,totalAmount:this.totalAmount}}})
+    this.router.navigate(['/checkout'])
   }
 }

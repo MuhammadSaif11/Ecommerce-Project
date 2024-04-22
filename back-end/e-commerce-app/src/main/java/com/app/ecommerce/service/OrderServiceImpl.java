@@ -1,21 +1,17 @@
 package com.app.ecommerce.service;
 
-import com.app.ecommerce.dao.OrderDao;
-import com.app.ecommerce.dao.OrderItemDao;
-import com.app.ecommerce.dao.ProductDao;
-import com.app.ecommerce.dao.UserDao;
+import com.app.ecommerce.dao.*;
+import com.app.ecommerce.dto.OrderDto;
 import com.app.ecommerce.dto.OrderDtoRequest;
 import com.app.ecommerce.dto.SimpleMessageResponseDto;
-import com.app.ecommerce.entity.Order;
-import com.app.ecommerce.entity.OrderItem;
-import com.app.ecommerce.entity.Product;
-import com.app.ecommerce.entity.User;
+import com.app.ecommerce.entity.*;
 import com.app.ecommerce.security.JwtAuthFilter;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 @Service
@@ -26,15 +22,19 @@ public class OrderServiceImpl implements OrderService {
     private OrderItemDao orderItemDao;
     private ProductDao productDao;
     private UserDao userDao;
+    private CartDao cartDao;
+    private CartItemDao cartItemDao;
     private ModelMapper modelMapper;
 
     @Autowired
-    public OrderServiceImpl(ModelMapper modelMapper,OrderDao orderDao, OrderItemDao orderItemDao, ProductDao productDao, UserDao userDao) {
+    public OrderServiceImpl(CartItemDao cartItemDao,CartDao cartDao,ModelMapper modelMapper,OrderDao orderDao, OrderItemDao orderItemDao, ProductDao productDao, UserDao userDao) {
         this.orderDao = orderDao;
         this.orderItemDao = orderItemDao;
         this.productDao = productDao;
         this.userDao = userDao;
         this.modelMapper = modelMapper;
+        this.cartDao = cartDao;
+        this.cartItemDao = cartItemDao;
     }
 
     @Override
@@ -55,7 +55,6 @@ public class OrderServiceImpl implements OrderService {
                 .createdAt(LocalDateTime.now())
                 .orderTotalAmount(orderTotalAmount.get())
                 .build();
-        System.out.println(order);
         Order savedOrder = orderDao.save(order);
 
         orderDto.getOrderItem().stream().forEach(orderItemDto -> {
@@ -69,7 +68,21 @@ public class OrderServiceImpl implements OrderService {
             this.orderItemDao.save(orderItem);
         });
 
+        Cart cart1 = this.cartDao.findByUser(user);
+        this.cartItemDao.deleteByCart_CartId(cart1.getCartId());
 
         return SimpleMessageResponseDto.builder().message("Order has been places successfully").build();
+    }
+
+    @Override
+    public List<OrderDto> getAllOrders() {
+//        User user = this.userDao.findByUsername(JwtAuthFilter.CURRENT_USER);
+        List<OrderDto> ordersList = new ArrayList<>();
+        List<Order> orders = this.orderDao.findByUser_Username(JwtAuthFilter.CURRENT_USER);
+        orders.stream().forEach(order -> {
+            OrderDto orderDto = this.modelMapper.map(order,OrderDto.class);
+            ordersList.add(orderDto);
+        });
+        return ordersList;
     }
 }

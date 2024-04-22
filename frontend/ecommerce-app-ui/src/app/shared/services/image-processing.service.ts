@@ -28,7 +28,6 @@ export class ImageProcessingService {
   }
 
   byteToFile2(productImage:any){
-    const imageFiles:File[] = [];
     if(productImage){
       const byteString = window.atob(productImage.picByte);
       const arrayBuffer = new ArrayBuffer(byteString.length);
