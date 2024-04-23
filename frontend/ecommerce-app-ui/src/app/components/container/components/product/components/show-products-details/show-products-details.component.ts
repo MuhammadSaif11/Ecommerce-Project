@@ -27,7 +27,7 @@ export class ShowProductsDetailsComponent implements OnInit {
   }
 
   getAllProducts(){
-    this.products = this.activeRoute.snapshot.data['products'];
+    this.products = this.activeRoute.snapshot.data['products'].content;
     // response.subscribe({
     //   next:(res)=>{
     //     console.log(res);

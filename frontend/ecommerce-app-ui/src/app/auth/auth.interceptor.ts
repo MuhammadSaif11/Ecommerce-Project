@@ -8,24 +8,26 @@ export class AuthInterceptor implements HttpInterceptor{
     private userAuthService:UserAuthService = inject(UserAuthService);
     private router:Router = inject(Router);
 
-    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
         if(req.headers.get("No-Auth") === "True"){
             return next.handle(req.clone());
         }
 
         const token = this.userAuthService.getToken();
+        if(!token){
+            this.router.navigate(['/auth/login']);
+            return null;
+        }
         const modifiedReq = this.addToken(req,token);
         return next.handle(modifiedReq).pipe(
             catchError((err:HttpErrorResponse) =>{
-                console.log(err.status)
-                if (err.status === 401 || err.error.message === 'JWT TOKEN EXPIRED') {
+                if (err.status === 401 || err.error.message === 'JWT TOKEN EXPIRED'){
                     this.userAuthService.clear()
-                    this.router.navigate(['/login']);
+                    this.router.navigate(['/auth/login']);
                 }
                 else if (err.status === 403) {
                     this.router.navigate(['/forbidden']);
                 }
-                console.log(err)
                 return throwError(() => new Error("something went wrong"));
             }
         ));

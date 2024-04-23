@@ -4,6 +4,7 @@ import { Observable, catchError, map, of } from 'rxjs';
 import { Product } from 'src/app/models/Product.model';
 import { ImageProcessingService } from './image-processing.service';
 import { ActivatedRoute, ActivatedRouteSnapshot, ResolveFn, RouterStateSnapshot } from '@angular/router';
+import { Page } from 'src/app/models/Page.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +23,8 @@ export class ProductService {
     return this.http.post<Product>(this.api + '/add',product)
   }
 
-  getAllProducts(){
-    return this.http.get(this.api ,{headers:this.requestHeader})
+  getAllProducts(pageNumber:number = 0){
+    return this.http.get(this.api+`?pageNumber=${pageNumber}` ,{headers:this.requestHeader})
   }
 
   getProductById(productId:bigint){
@@ -52,14 +53,35 @@ export const singleProductResolve:ResolveFn<Product | HttpErrorResponse> = (
   }))
 }
 
-export const productResolve:ResolveFn<Product[]> = ():Observable<Product[]>=>{
+// export const productResolve:ResolveFn<Product[]> = ():Observable<Product[]>=>{
+//   const productService = inject(ProductService);
+//   const imageProcessingService = inject(ImageProcessingService);
+//   return productService.getAllProducts().pipe(map((product:any) =>{
+//     return product.map(product => {
+//       const files = imageProcessingService.byteToFile(product.productImages);
+//       return { ...product, productImages: files };
+//     });
+//   }))
+// }
+
+export const productResolve:ResolveFn<Page<Product> | HttpErrorResponse> = 
+(
+  route: ActivatedRouteSnapshot,
+  state: RouterStateSnapshot,
+):Observable<Page<Product>|HttpErrorResponse>=>{
   const productService = inject(ProductService);
   const imageProcessingService = inject(ImageProcessingService);
-  return productService.getAllProducts().pipe(map((product:any) =>{
-    return product.map(product => {
+  let pageNumber = route.queryParams['pageNumber'];
+  if(pageNumber!==undefined && pageNumber!==null) {
+    pageNumber = parseInt(pageNumber)-1;
+  }
+  return productService.getAllProducts(pageNumber).pipe(map((page:Page<Product>) =>{
+    page.content.map((product:Product) =>{
       const files = imageProcessingService.byteToFile(product.productImages);
-      return { ...product, productImages: files };
-    });
+      product.productImages = files
+      return product
+    })
+    return page;
   }))
 }
 

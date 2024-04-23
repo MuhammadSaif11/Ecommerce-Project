@@ -64,7 +64,6 @@
     }
 
     &__items{
-        width: 90%;
         height: 70%;
         overflow-y: auto;
         margin: auto;
@@ -73,8 +72,6 @@
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
-        border: 3px solid var(--color-primary-light);
-        border-radius: 3px;
     }
 
     &__item{
@@ -123,9 +120,5 @@
                 margin-left: 1rem;
             }
         }
-        // margin: 0 -1rem -2rem -1rem;
-        // margin-left: -1rem;
-        // margin-right: -1rem;
-        // margin-bottom: -1rem;
     }
 }

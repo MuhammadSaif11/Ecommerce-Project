@@ -27,4 +27,7 @@
             </div>
         </div>
     </div>
+    <div class="pagination">
+        <app-pagination [totalPages]="totalPages" (value)="changePage($event)"></app-pagination>
+    </div>
 </div>

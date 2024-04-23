@@ -16,18 +16,7 @@ export class SignupComponent implements OnInit {
   router:Router = inject(Router);
   userService:UserService = inject(UserService);
   error:CustomError;
-  signup(){
-    this.userService.signUp(this.signupForm.value).subscribe({
-      next:(response:User)=>{
-        console.log(response)
-        this.router.navigate(['/login']);
-      },
-      error:(error)=>{
-        this.error = error.error;
-        console.log(this.error)
-      }
-    })
-  }
+  showPopup:boolean = false;
 
   ngOnInit(): void {
     this.signupForm = this.formBuilder.group({
@@ -38,6 +27,25 @@ export class SignupComponent implements OnInit {
       'password':["",[Validators.required]],
       'gender':["male",[Validators.required]],
     })
+  }
+
+  signup(){
+    this.userService.signUp(this.signupForm.value).subscribe({
+      next:(response:User)=>{
+        this.showPopup = true;
+        console.log(response)
+      },
+      error:(error)=>{
+        this.error = error.error;
+        console.log(this.error)
+      }
+    })
+  }
+
+
+  closePopup(value:boolean){
+    this.showPopup = value;
+    this.router.navigate(['/auth/login']);
   }
 
 }

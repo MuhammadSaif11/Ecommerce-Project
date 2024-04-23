@@ -7,7 +7,7 @@ import { OrderItemDto } from 'src/app/models/OrderItemDto.model';
 import { ImageProcessingService } from 'src/app/shared/services/image-processing.service';
 import { OrderService } from 'src/app/shared/services/order.service';
 import { CartService } from '../cart/services/cart.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -19,12 +19,14 @@ export class CheckoutComponent {
   cartService: CartService = inject(CartService);
   orderService:OrderService = inject(OrderService);
   activeRoute:ActivatedRoute = inject(ActivatedRoute)
+  router:Router = inject(Router);
   imageProcessingService: ImageProcessingService = inject(ImageProcessingService);
   checkoutForm:FormGroup;
   cartItems:CartItem[];
   orderDto:OrderDto;
   urls:SafeUrl[] = [];
   totalAmount:number = 0;
+  showPopup:boolean = false;
   // userService:UserService = inject(UserService);
   // userAuthService:UserAuthService = inject(UserAuthService);
   // router:Router = inject(Router);
@@ -61,11 +63,12 @@ export class CheckoutComponent {
       orderItemDto.push({productId:item.product.productId, quantity:item.quantity})
     })
     this.orderDto = {...formValue, orderItem:orderItemDto}
-    console.log(this.orderDto)
     this.orderService.saveOrder(this.orderDto).subscribe({
       next:(response)=>{
         if(response !== null){
+          this.showPopup = true
           this.cartService.cartLengthSubject.next(0)
+          this.cartItems = [];
         }
         console.log(response)
       },
@@ -73,5 +76,10 @@ export class CheckoutComponent {
         console.log(error);
       }
     })
+  }
+
+  closePopup(value:boolean){
+    this.showPopup = value;
+    this.router.navigate(['/products']);
   }
 }

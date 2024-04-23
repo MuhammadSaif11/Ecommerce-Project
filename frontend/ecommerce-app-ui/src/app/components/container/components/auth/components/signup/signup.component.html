@@ -53,3 +53,10 @@
         </div>
     </form>
 </app-form>
+<app-popup *ngIf="showPopup" (closePopup)="closePopup($event)">
+    <app-alert-box>
+        <div class="alert alert__success">
+            You have been registered successfully.
+        </div>
+    </app-alert-box>
+</app-popup>

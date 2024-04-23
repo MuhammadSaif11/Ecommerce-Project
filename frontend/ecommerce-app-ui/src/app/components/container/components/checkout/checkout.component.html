@@ -45,3 +45,10 @@
         </div>
     </div>
 </div>
+<app-popup *ngIf="showPopup" (closePopup)="closePopup($event)">
+    <app-alert-box>
+        <div class="alert alert__success">
+            order has been placed successfully.
+        </div>
+    </app-alert-box>
+</app-popup>

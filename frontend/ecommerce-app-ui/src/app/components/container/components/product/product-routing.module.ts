@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { canActivate } from 'src/app/auth/auth.guard';
 import { ShowProductsDetailsComponent } from './components/show-products-details/show-products-details.component';
@@ -12,9 +12,11 @@ const routes: Routes = [
   {path:":productId/edit",component:AddProductComponent,canActivate:[canActivate],data:{roles:["ROLE_ADMIN"]}},
   {path:"details", component:ShowProductsDetailsComponent,resolve:{products:productResolve},canActivate:[canActivate],data:{roles:["ROLE_ADMIN"]}},
   {path:":productId",component:ProductViewDetailsComponent,resolve:{product:singleProductResolve},data:{roles:["ROLE_USER"]}},
-  {path:"",component:ProductListComponent,resolve:{products:productResolve}}
+  {path:"",component:ProductListComponent,resolve:{products:productResolve},runGuardsAndResolvers: 'paramsOrQueryParamsChange'}
 ];
-
+const routerOptions: ExtraOptions = {
+  paramsInheritanceStrategy: 'always'
+};
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

@@ -18,16 +18,20 @@ export class ProductListComponent implements OnInit {
   products:Product[] = [];
   url:SafeUrl[] = [];
   isUser:boolean;
+  totalPages:number;
 
   ngOnInit(): void {
     this.getAllProducts();
     this.isUser = this.userAuthService.isUser();
   }
 
-
+  changePage(value:number){
+    this.router.navigate(['/products'],{queryParams:{pageNumber:value}})
+  }
 
   getAllProducts(){
-    this.products = this.activeRoute.snapshot.data['products'];
+    this.products = this.activeRoute.snapshot.data['products'].content;
+    this.totalPages = this.activeRoute.snapshot.data['products'].totalPages;
     this.products.forEach(product =>{
       const safeUrl:SafeUrl = this.imageProcessingService.getSingleUrlOfImageFile(product.productImages[0]);
       this.url.push(safeUrl);

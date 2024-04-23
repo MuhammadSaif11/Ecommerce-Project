@@ -1,8 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { CustomError } from 'src/app/models/CustomError.model';
-import { ProductService } from 'src/app/shared/services/product.service';
+import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, Event } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -10,5 +7,21 @@ import { ProductService } from 'src/app/shared/services/product.service';
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent {
+  router:Router = inject(Router);
+  showLoader:boolean = false;
 
+
+  ngOnInit() {
+    this.router.events.subscribe((event: Event) => {
+      if(event instanceof NavigationStart){
+        this.showLoader = true
+      }
+      if(
+        event instanceof NavigationEnd || 
+        event instanceof NavigationCancel ||
+        event instanceof NavigationError){
+          this.showLoader = false
+        }
+    })
+  }
 }

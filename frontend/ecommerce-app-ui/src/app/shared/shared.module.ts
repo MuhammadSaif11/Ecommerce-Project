@@ -11,6 +11,8 @@ import { RouterModule } from '@angular/router';
 import { AlertBoxComponent } from './components/alert-box/alert-box.component';
 import { TableComponent } from './components/table/table.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { PopupComponent } from './components/popup/popup.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 
 
@@ -25,6 +27,8 @@ import { LoaderComponent } from './components/loader/loader.component';
     AlertBoxComponent,
     TableComponent,
     LoaderComponent,
+    PopupComponent,
+    PaginationComponent,
   ],
   imports: [
     CommonModule,
@@ -41,6 +45,8 @@ import { LoaderComponent } from './components/loader/loader.component';
     AlertBoxComponent,
     TableComponent,
     LoaderComponent,
+    PopupComponent,
+    PaginationComponent,
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule

@@ -9,7 +9,7 @@ import { OrderComponent } from './components/order/order.component';
 import { orderResolve } from 'src/app/shared/services/order.service';
 
 const routes: Routes = [
-  { path:"products",component:ProductComponent,loadChildren:()=> import("./components/product/product-routing.module").then(r=>r.ProductRoutingModule)},
+  {path:"products",component:ProductComponent,loadChildren:()=> import("./components/product/product-routing.module").then(r=>r.ProductRoutingModule)},
   {path: 'auth', component:AuthComponent,loadChildren:()=> import("./components/auth/auth-routing.module").then(r=>r.AuthRoutingModule)},
   {path:"cart",component:CartComponent,resolve:{cart:cartResolve},data:{roles:["ROLE_USER"]}},
   {path:"checkout",component:CheckoutComponent,resolve:{cart:cartResolve},data:{roles:["ROLE_USER"]}},

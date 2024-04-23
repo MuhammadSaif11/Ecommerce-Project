@@ -19,14 +19,17 @@ export class OrderComponent implements OnInit {
   urls: any[] = [];
 
   ngOnInit(): void {
-    this.orders = this.activatedRoute.snapshot.data['orders'];
-    this.orders.forEach((order) => {
-      const url: SafeUrl[] = [];
-      order.orderItems.forEach((orderItem) => {
-        url.push(this.imageService.getSingleUrlOfImageFile(orderItem.product.productImages[0]));
+    console.log(this.activatedRoute.snapshot.data['orders'])
+    if(this.activatedRoute.snapshot.data['orders']){
+      this.orders = this.activatedRoute.snapshot.data['orders'];
+      this.orders.forEach((order) => {
+        const url: SafeUrl[] = [];
+        order.orderItems.forEach((orderItem) => {
+          url.push(this.imageService.getSingleUrlOfImageFile(orderItem.product.productImages[0]));
+        });
+        this.urls.push(url);
       });
-      this.urls.push(url);
-    });
+    }
 
     // this.orderService.getAllOrders().subscribe({
     //   next:(response:Order[])=>{
