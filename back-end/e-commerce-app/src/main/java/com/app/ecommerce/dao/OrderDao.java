@@ -8,4 +8,6 @@ import java.util.List;
 public interface OrderDao extends JpaRepository<Order,Long> {
 
     List<Order> findByUser_Username(String username);
+
+    List<Order> findByOrderStatus(String orderStatus);
 }

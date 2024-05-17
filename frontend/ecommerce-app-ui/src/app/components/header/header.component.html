@@ -5,7 +5,7 @@
             <img src="../../../assets/images/xeniore-high-resolution-logo.png" alt="Logo" class="header__logo">
         </div>
         <div class="header__search-box">
-            <app-search></app-search>
+            <app-search (searchValue)="getSearchValue($event)" [placeholder]="'Search Pages'"></app-search>
         </div>
         <nav *ngIf="loggedIn()" class="user-nav">
             <div class="user-nav__icon-box">

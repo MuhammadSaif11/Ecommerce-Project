@@ -13,6 +13,7 @@ import { AuthModule } from './components/container/components/auth/auth.module';
 import { AdminComponent } from './components/admin/admin.component';
 import { UserComponent } from './components/user/user.component';
 import { ProductModule } from './components/container/components/product/product.module';
+import { OrderModule } from './components/container/components/order/order.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth.interceptor';
 
@@ -25,7 +26,6 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     ForbiddenComponent,
     AdminComponent,
     UserComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -33,7 +33,8 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     ContainerModule,
     AuthModule,
     SharedModule,
-    ProductModule
+    ProductModule,
+    OrderModule
   ],
   providers: [
     {

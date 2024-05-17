@@ -1,6 +1,7 @@
 package com.app.ecommerce.security;
 
 import com.app.ecommerce.service.UserServiceImpl;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +17,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+
+import java.util.Arrays;
+import java.util.Collections;
 
 @Configuration
 @EnableWebSecurity
@@ -50,7 +56,22 @@ public class SecurityConfig {
     }
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.disable())
+        http.cors(httpSecurityCorsConfigurer -> {
+            httpSecurityCorsConfigurer.configurationSource(new CorsConfigurationSource() {
+                @Override
+                public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
+                    CorsConfiguration configuration  = new CorsConfiguration();
+                    configuration.setAllowedOrigins(Collections.singletonList("http://localhost:4200"));
+                    configuration.setAllowedMethods(Collections.singletonList("*"));
+                    configuration.setAllowCredentials(true);
+                    configuration.setAllowedHeaders(Collections.singletonList("*"));
+                    configuration.setExposedHeaders(Arrays.asList("Authorization"));
+                    configuration.setMaxAge(3600L);
+                    return configuration;
+                }
+            });
+                })
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(req -> req
                         .requestMatchers(HttpMethod.GET,"/products/{productId}").permitAll()
                         .requestMatchers("/registerUser","/login","/forgot-password","/verify-otp","/change-password","/products")

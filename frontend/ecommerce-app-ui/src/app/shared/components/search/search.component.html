@@ -1,6 +1,6 @@
 <div class="search">
-    <input type="text" class="search__input" placeholder="Search Products">
-    <button class="search__btn">
+    <input #searchInp type="text" class="search__input" [placeholder]="placeholder">
+    <button class="search__btn" (click)="search(searchInp.value)">
         <svg class="search__icon">
             <use xlink:href="../../../assets/images/sprite.svg#icon-magnifying-glass"></use>
         </svg>

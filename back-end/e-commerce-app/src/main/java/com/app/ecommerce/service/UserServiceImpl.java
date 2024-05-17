@@ -1,11 +1,13 @@
 package com.app.ecommerce.service;
 
+import com.app.ecommerce.dao.CartDao;
 import com.app.ecommerce.dao.OtpDao;
 import com.app.ecommerce.dao.UserDao;
 import com.app.ecommerce.dto.ChangePasswordDto;
 import com.app.ecommerce.dto.OtpDto;
 import com.app.ecommerce.dto.SimpleMessageResponseDto;
 import com.app.ecommerce.dto.UserDto;
+import com.app.ecommerce.entity.Cart;
 import com.app.ecommerce.entity.Otp;
 import com.app.ecommerce.entity.Role;
 import com.app.ecommerce.entity.User;
@@ -29,10 +31,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class UserServiceImpl implements UserService, UserDetailsService {
@@ -44,6 +43,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
     private AuthenticationManager authenticationManager;
     private JwtService jwtUtil;
+    private CartDao cartDao;
 
     @Autowired
     @Lazy
@@ -52,6 +52,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Value("${spring.mail.username}")
     private String fromEmail;
 
+    @Autowired
+    public void setCartService(CartDao cartDao) {
+        this.cartDao = cartDao;
+    }
     @Autowired
     public void setModelMapper(ModelMapper modelMapper) {
         this.modelMapper = modelMapper;
@@ -93,7 +97,15 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         Set<Role> roleSet = new HashSet<>();
         roleSet.add(roleService.findByRoleName("ROLE_USER"));
         user1.setRoles(roleSet);
-        return this.modelMapper.map(userDao.save(user1),UserDto.class);
+        User user2 = userDao.save(user1);
+        Cart cart = Cart
+                .builder()
+                .user(user2)
+                .cartItems(new LinkedHashSet<>())
+                .build();
+        this.cartDao.save(cart);
+        UserDto userDto = this.modelMapper.map(user2,UserDto.class);
+        return userDto;
     }
 
     @Override

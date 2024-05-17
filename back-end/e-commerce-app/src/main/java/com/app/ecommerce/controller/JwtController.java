@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin
 public class JwtController {
 
     private AuthenticationManager authenticationManager;
@@ -33,7 +32,7 @@ public class JwtController {
     @PostMapping("/login")
     public JwtResponse authenticateAndGetToken(@RequestBody JwtRequest jwtRequest){
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(jwtRequest.getUsername(), jwtRequest.getPassword()));
-        Authentication authentication1 = SecurityContextHolder.getContext().getAuthentication();
+//        Authentication authentication1 = SecurityContextHolder.getContext().getAuthentication();
         if(authentication.isAuthenticated()){
             User user = userService.findUserByName(jwtRequest.getUsername());
             return JwtResponse.builder()

@@ -1,0 +1,28 @@
+.filter{
+    display: flex;
+    margin-bottom: 1rem;
+
+    &__box{
+        &:not(:last-child){
+            margin-right: 1rem;
+        }
+        padding: 1rem;
+        font-size: 1.6rem;
+        text-transform: uppercase;
+        border: 1px solid var(--color-primary);
+        cursor: pointer;
+
+        &:hover{
+            background-color: var(--color-primary);
+            color: #fff;
+        }
+    }
+}
+.selected-one{
+    background-color: var(--color-primary);
+    color: #fff;
+}
+.delivered{
+    opacity: .5;
+    cursor:not-allowed;
+}

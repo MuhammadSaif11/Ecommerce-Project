@@ -43,4 +43,7 @@
         </tr>
     </tbody>
 </app-table>
+<div class="pagination">
+    <app-pagination [totalPages]="totalPages" (value)="changePage($event)"></app-pagination>
+</div>
 <app-show-product-images *ngIf="openImagesComponent" [urls]="url" (closeComponent)="closeImagesComponent($event)"></app-show-product-images>

@@ -36,6 +36,7 @@ export class HeaderComponent implements OnInit {
   logout(){
     this.userAuthService.clear();
     this.dropdown = false;
+    this.router.navigate(['/auth/login']);
   }
 
   openDropdown(){
@@ -61,5 +62,20 @@ export class HeaderComponent implements OnInit {
 
   toCart(){
     this.router.navigate(['/cart']);
+  }
+
+  getSearchValue(value:string){
+    if(value.toLocaleLowerCase() === "products"){
+      this.router.navigate(['/products']);
+    }
+    else if (value.toLocaleLowerCase() === "orders") {
+      this.router.navigate(['/orders']);
+    }
+    else if (value.toLocaleLowerCase() === "cart") {
+      this.router.navigate(['/cart']);
+    }
+    else if (value.toLocaleLowerCase() === "checkout") {
+      this.router.navigate(['/checkout']);
+    }
   }
 }

@@ -15,7 +15,8 @@ export class SignupComponent implements OnInit {
   signupForm:FormGroup;
   router:Router = inject(Router);
   userService:UserService = inject(UserService);
-  error:CustomError;
+  error:boolean = false;
+  signupError:CustomError;
   showPopup:boolean = false;
 
   ngOnInit(): void {
@@ -36,8 +37,9 @@ export class SignupComponent implements OnInit {
         console.log(response)
       },
       error:(error)=>{
-        this.error = error.error;
-        console.log(this.error)
+        this.signupError = error.error;
+        this.error = true
+        console.log(this.signupError)
       }
     })
   }

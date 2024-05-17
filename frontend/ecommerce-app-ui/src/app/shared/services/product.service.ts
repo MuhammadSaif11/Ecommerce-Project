@@ -23,8 +23,8 @@ export class ProductService {
     return this.http.post<Product>(this.api + '/add',product)
   }
 
-  getAllProducts(pageNumber:number = 0){
-    return this.http.get(this.api+`?pageNumber=${pageNumber}` ,{headers:this.requestHeader})
+  getAllProducts(pageNumber:number = 0,pageSize:number = 6,search:string = ""){
+    return this.http.get(this.api+`?pageNumber=${pageNumber}&pageSize=${pageSize}&search=${search}` ,{headers:this.requestHeader})
   }
 
   getProductById(productId:bigint){
@@ -72,10 +72,12 @@ export const productResolve:ResolveFn<Page<Product> | HttpErrorResponse> =
   const productService = inject(ProductService);
   const imageProcessingService = inject(ImageProcessingService);
   let pageNumber = route.queryParams['pageNumber'];
+  let pageSize = route.queryParams['pageSize'];
+  let search = route.queryParams['search'];
   if(pageNumber!==undefined && pageNumber!==null) {
     pageNumber = parseInt(pageNumber)-1;
   }
-  return productService.getAllProducts(pageNumber).pipe(map((page:Page<Product>) =>{
+  return productService.getAllProducts(pageNumber,pageSize,search).pipe(map((page:Page<Product>) =>{
     page.content.map((product:Product) =>{
       const files = imageProcessingService.byteToFile(product.productImages);
       product.productImages = files

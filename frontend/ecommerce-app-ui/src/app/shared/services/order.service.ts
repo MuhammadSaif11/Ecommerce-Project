@@ -5,7 +5,7 @@ import { Observable, catchError, map, of } from 'rxjs';
 import { Order } from 'src/app/models/Order.model';
 import { OrderDto } from 'src/app/models/OrderDto.model';
 import { ImageProcessingService } from './image-processing.service';
-import { OrderItem } from 'src/app/models/OrderItem.model';
+import { OrderDetail } from 'src/app/models/OrderDetail.model';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +25,14 @@ export class OrderService {
   getAllOrders(){
     return this.http.get<Order[]>(this.api)
   }
+
+  getAllOrderDetails(){
+    return this.http.get<OrderDetail[]>(this.api+"/details")
+  }
+
+  setOrderStatusDelivered(orderId:bigint){
+    return this.http.get(this.api+`/details/${orderId}`)
+  }
 }
 
 export const orderResolve = ():Observable<Order[] | HttpErrorResponse> =>{
@@ -41,6 +49,13 @@ export const orderResolve = ():Observable<Order[] | HttpErrorResponse> =>{
     })
     
   })).pipe(catchError((error:HttpErrorResponse) => {
+    return of(error)
+  }))
+}
+
+export const orderDetailResolve = ():Observable<OrderDetail[] | HttpErrorResponse>=>{
+  const orderService = inject(OrderService);
+  return orderService.getAllOrderDetails().pipe(catchError((error:HttpErrorResponse) => {
     return of(error)
   }))
 }

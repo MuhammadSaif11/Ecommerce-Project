@@ -55,6 +55,7 @@ export class AddProductComponent {
     this.productService.addProduct(formdata).subscribe({
       next:(response:Product)=>{
         console.log(response)
+        this.router.navigate(['/products/details'])
       },
       error:(error)=>{
         console.log(error)

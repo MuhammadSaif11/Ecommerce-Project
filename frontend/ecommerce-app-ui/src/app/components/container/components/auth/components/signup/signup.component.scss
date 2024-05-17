@@ -15,3 +15,11 @@
         }
     }
 }
+.error{
+    color: var(--color-primary);
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: bold;
+    display: block;
+    letter-spacing: 3px;
+}

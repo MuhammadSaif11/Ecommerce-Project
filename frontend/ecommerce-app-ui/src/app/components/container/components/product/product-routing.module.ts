@@ -6,13 +6,15 @@ import { ShowProductsDetailsComponent } from './components/show-products-details
 import { productResolve, singleProductResolve } from 'src/app/shared/services/product.service';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductViewDetailsComponent } from './components/product-view-details/product-view-details.component';
+import { PageNotFoundComponent } from '../page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {path:"add",component:AddProductComponent,canActivate:[canActivate],data:{roles:["ROLE_ADMIN"]}},
   {path:":productId/edit",component:AddProductComponent,canActivate:[canActivate],data:{roles:["ROLE_ADMIN"]}},
-  {path:"details", component:ShowProductsDetailsComponent,resolve:{products:productResolve},canActivate:[canActivate],data:{roles:["ROLE_ADMIN"]}},
-  {path:":productId",component:ProductViewDetailsComponent,resolve:{product:singleProductResolve},data:{roles:["ROLE_USER"]}},
-  {path:"",component:ProductListComponent,resolve:{products:productResolve},runGuardsAndResolvers: 'paramsOrQueryParamsChange'}
+  {path:"details", component:ShowProductsDetailsComponent,resolve:{products:productResolve},canActivate:[canActivate],data:{roles:["ROLE_ADMIN"]},runGuardsAndResolvers: 'paramsOrQueryParamsChange'},
+  {path:":productId",component:ProductViewDetailsComponent,resolve:{product:singleProductResolve},canActivate:[canActivate],data:{roles:["ROLE_USER"]}},
+  {path:"",component:ProductListComponent,resolve:{products:productResolve},runGuardsAndResolvers: 'paramsOrQueryParamsChange'},
+  {path:"**",component:PageNotFoundComponent}
 ];
 const routerOptions: ExtraOptions = {
   paramsInheritanceStrategy: 'always'

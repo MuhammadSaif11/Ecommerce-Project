@@ -21,6 +21,7 @@ export class ShowProductsDetailsComponent implements OnInit {
   products:Product[] = [];
   cols:string[] = ['id','name','description','actual price','discounted price','images','edit','delete'];
   url:SafeUrl[];
+  totalPages:number;
 
   ngOnInit(): void {
     this.getAllProducts();
@@ -28,6 +29,7 @@ export class ShowProductsDetailsComponent implements OnInit {
 
   getAllProducts(){
     this.products = this.activeRoute.snapshot.data['products'].content;
+    this.totalPages = this.activeRoute.snapshot.data['products'].totalPages;
     // response.subscribe({
     //   next:(res)=>{
     //     console.log(res);
@@ -72,5 +74,8 @@ export class ShowProductsDetailsComponent implements OnInit {
   }
   editProduct(product:Product){
     this.router.navigate(['/products/' + product.productId+'/edit'],{state:product});
+  }
+  changePage(value:number){
+      this.router.navigate(['/products/details'],{queryParams:{pageNumber:value}})
   }
 }

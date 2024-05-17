@@ -11,6 +11,7 @@ import com.app.ecommerce.entity.Product;
 import com.app.ecommerce.entity.User;
 import com.app.ecommerce.security.JwtAuthFilter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -23,6 +24,7 @@ public class CartServiceImpl implements CartService {
     private UserDao userDao;
     private ProductDao productDao;
     private CartItemDao cartItemDao;
+
 
     @Autowired
     public CartServiceImpl(CartDao cartDao, UserDao userDao, ProductDao productDao, CartItemDao cartItemDao) {

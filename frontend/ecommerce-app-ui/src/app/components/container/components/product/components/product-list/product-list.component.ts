@@ -26,7 +26,19 @@ export class ProductListComponent implements OnInit {
   }
 
   changePage(value:number){
-    this.router.navigate(['/products'],{queryParams:{pageNumber:value}})
+    const searchVal = this.activeRoute.snapshot.queryParams['search'];
+    if( searchVal === "" || searchVal === undefined || searchVal === null){
+      this.router.navigate(['/products'],{queryParams:{pageNumber:value}})
+    }
+    else{
+      this.router.navigate(['/products'],{queryParams:{pageNumber:value,search:searchVal}})
+    }
+  }
+
+  getSearchValue(value:string){
+    if(value !== ""){
+      this.router.navigate(['/products'],{queryParams:{search:value}})
+    }
   }
 
   getAllProducts(){

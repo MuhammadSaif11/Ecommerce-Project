@@ -2,8 +2,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--color-primary);
-    padding: 2rem 0;
+    background-color: var(--color-grey-dark-1);
+    padding: 1rem 0;
     border-radius: 6px;
 
     &__links{
@@ -16,38 +16,42 @@
         align-items: center;
         justify-content: center;
         margin: 0 1.5rem;
-        color: var(--color-grey-dark-1);
-        width: 3.5rem;
-        height: 3.5rem;
+        color: #fff;
+        width: 4rem;
+        height: 4rem;
         font-size: 1.8rem;
         font-weight: 500;
         border-radius: 50%;
         cursor: pointer;
+        transition: all .2s;
         &:hover{
-            color: var(--color-primary);
-            background-color: var(--color-grey-dark-1);
+            background-color: var(--color-primary);
+            transform: scale(1.1) translateY(-3px);
         }
     }
     &__btn{
         align-items: center;
+        justify-content: center;
         display: inline-flex;
-        color: var(--color-grey-dark-1);
-        padding: 1rem;
+        text-transform: capitalize;
+        color: #fff;
+        padding: 2rem;
+        border-radius: 50%;
         font-weight: 500;
-        font-size: 1.8rem;
+        font-size: 1.6rem;
         border: none;
         outline: none;
         background: transparent;
         cursor: pointer;
         transition: all .2s;
         &:hover{
-            color: var(--color-primary);
-            background-color: var(--color-grey-dark-1);
+            background-color: var(--color-primary);
+            transform: scale(1.1);
         }
     }
 }
 
 .selected-one{
-    color: var(--color-primary);
-    background-color: var(--color-grey-dark-1);
+    background-color: var(--color-primary);
+    transform: scale(1.1) translateY(-3px);
 }

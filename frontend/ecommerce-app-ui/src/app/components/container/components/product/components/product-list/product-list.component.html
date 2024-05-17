@@ -1,4 +1,9 @@
 <div class="products-container">
+    <div class="search-box">
+        <div class="search">
+            <app-search (searchValue)="getSearchValue($event)" [placeholder]="'Search Products'"></app-search>
+        </div>
+    </div>
     <div class="product" *ngFor="let product of products;index as i">
         <div class="card">
             <div class="card__side card__side--front">

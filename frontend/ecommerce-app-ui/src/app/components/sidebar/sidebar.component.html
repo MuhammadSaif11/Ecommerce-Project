@@ -1,7 +1,7 @@
 <nav class="sidebar" [ngClass]="{'sidebar-open': isSidebarOpen, 'sidebar-closed': !isSidebarOpen}">
     <ul class="side-nav">
         <li class="side-nav__item">
-            <a routerLink="/products" class="side-nav__link" routerLinkActive="side-nav__item-active" [routerLinkActiveOptions]="{exact:
+            <a routerLink="/products" queryParamsHandling="merge" class="side-nav__link" routerLinkActive="side-nav__item-active" [routerLinkActiveOptions]="{exact:
                 true}">
                 <svg class="side-nav__icon">
                     <use xlink:href="../../../assets/images/sprite.svg#icon-shopping-bag"></use>
@@ -10,7 +10,7 @@
             </a>
         </li>
         <li class="side-nav__item side-nav__item--active">
-            <a routerLink="/orders" class="side-nav__link" routerLinkActive="side-nav__item-active" [routerLinkActiveOptions]="{exact:
+            <a *ngIf="userAuthService.isUser()" routerLink="/orders" class="side-nav__link" routerLinkActive="side-nav__item-active" [routerLinkActiveOptions]="{exact:
                 true}">
                 <svg class="side-nav__icon">
                     <use xlink:href="../../../assets/images/sprite.svg#icon-border_color"></use>

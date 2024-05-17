@@ -1,52 +1,27 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { SafeUrl } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
-import { Order } from 'src/app/models/Order.model';
-import { OrderDto } from 'src/app/models/OrderDto.model';
-import { ImageProcessingService } from 'src/app/shared/services/image-processing.service';
-import { OrderService } from 'src/app/shared/services/order.service';
+import { Event, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
 
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.scss'],
 })
-export class OrderComponent implements OnInit {
-  orderService: OrderService = inject(OrderService);
-  imageService: ImageProcessingService = inject(ImageProcessingService);
-  activatedRoute: ActivatedRoute = inject(ActivatedRoute);
-  orders: Order[] = [];
-  urls: any[] = [];
+export class OrderComponent{
+  router:Router = inject(Router);
+  showLoader:boolean = false;
 
-  ngOnInit(): void {
-    console.log(this.activatedRoute.snapshot.data['orders'])
-    if(this.activatedRoute.snapshot.data['orders']){
-      this.orders = this.activatedRoute.snapshot.data['orders'];
-      this.orders.forEach((order) => {
-        const url: SafeUrl[] = [];
-        order.orderItems.forEach((orderItem) => {
-          url.push(this.imageService.getSingleUrlOfImageFile(orderItem.product.productImages[0]));
-        });
-        this.urls.push(url);
-      });
-    }
 
-    // this.orderService.getAllOrders().subscribe({
-    //   next:(response:Order[])=>{
-    //     this.orders = response;
-    //     this.orders.forEach(order =>{
-    //       const url:SafeUrl[] = []
-    //       order.orderItems.forEach(orderItem =>{
-    //         const file:File = this.imageService.byteToFile2(orderItem.product.productImages[0])
-    //         url.push(this.imageService.getSingleUrlOfImageFile(file))
-    //       })
-    //       this.urls.push(url)
-    //       console.log(this.urls)
-    //     })
-    //   },
-    //   error:(error)=>{
-    //     console.log(error);
-    //   }
-    // })
+  ngOnInit() {
+    this.router.events.subscribe((event: Event) => {
+      if(event instanceof NavigationStart){
+        this.showLoader = true
+      }
+      if(
+        event instanceof NavigationEnd || 
+        event instanceof NavigationCancel ||
+        event instanceof NavigationError){
+          this.showLoader = false
+        }
+    })
   }
 }

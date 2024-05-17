@@ -9,7 +9,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { CartComponent } from './components/cart/cart.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { OrderComponent } from './components/order/order.component';
-import { OrderViewDetailComponent } from './components/order/components/order-view-detail/order-view-detail.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 
 
@@ -20,8 +20,7 @@ import { OrderViewDetailComponent } from './components/order/components/order-vi
     CartComponent,
     CheckoutComponent,
     OrderComponent,
-    OrderViewDetailComponent,
-
+    PageNotFoundComponent,
   ],
   imports: [
     CommonModule,

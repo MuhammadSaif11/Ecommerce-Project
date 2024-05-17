@@ -19,6 +19,7 @@
             <app-input>
                 <input formControlName="username" type="text" class="input-text" placeholder="Username" id="username">
             </app-input>
+            <small *ngIf="error && signupForm.valid" class="error">{{signupError.message}}</small>
         </div>
         <div class="form__group">
             <app-input>

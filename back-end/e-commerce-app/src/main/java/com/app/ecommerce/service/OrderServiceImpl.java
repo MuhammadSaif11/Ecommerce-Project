@@ -1,6 +1,7 @@
 package com.app.ecommerce.service;
 
 import com.app.ecommerce.dao.*;
+import com.app.ecommerce.dto.OrderDetailDto;
 import com.app.ecommerce.dto.OrderDto;
 import com.app.ecommerce.dto.OrderDtoRequest;
 import com.app.ecommerce.dto.SimpleMessageResponseDto;
@@ -84,5 +85,41 @@ public class OrderServiceImpl implements OrderService {
             ordersList.add(orderDto);
         });
         return ordersList;
+    }
+
+    @Override
+    public List<OrderDetailDto> getAllOrdersDetails(String filter) {
+        List<OrderDetailDto> orderDetailDtos = new ArrayList<>();
+        if(filter.equals("all")){
+            List<Order> orders = this.orderDao.findAll();
+            orders.stream().forEach(order -> {
+                OrderDetailDto orderDetailDto = this.modelMapper.map(order,OrderDetailDto.class);
+                List<String> productNames = new ArrayList<>();
+                order.getOrderItems().stream().forEach(orderItem -> {
+                    productNames.add(orderItem.getProduct().getProductName());
+                });
+                orderDetailDto.setProductNames(productNames);
+                orderDetailDtos.add(orderDetailDto);
+            });
+        }else {
+            List<Order> orders = this.orderDao.findByOrderStatus(filter);
+            orders.stream().forEach(order -> {
+                OrderDetailDto orderDetailDto = this.modelMapper.map(order,OrderDetailDto.class);
+                List<String> productNames = new ArrayList<>();
+                order.getOrderItems().stream().forEach(orderItem -> {
+                    productNames.add(orderItem.getProduct().getProductName());
+                });
+                orderDetailDto.setProductNames(productNames);
+                orderDetailDtos.add(orderDetailDto);
+            });
+        }
+        return orderDetailDtos;
+    }
+
+    @Override
+    public void setOrderStatus(Long orderId) {
+        Order order = this.orderDao.findById(orderId).get();
+        order.setOrderStatus("ORDER_DELIVERED");
+        this.orderDao.save(order);
     }
 }

@@ -8,10 +8,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin
 public class UserController {
     private UserService userService;
     Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -56,6 +56,12 @@ public class UserController {
     @PostMapping("/change-password")
     public SimpleMessageResponseDto changePassword(@RequestBody ChangePasswordDto changePasswordDto){
         return userService.changePassword(changePasswordDto);
+    }
+
+    @PreAuthorize("hasAuthority('ROLE_USER')")
+    @GetMapping("/getUserName")
+    public String getUserName(Authentication authentication){
+        return authentication.getName();
     }
 
 }
